@@ -82,7 +82,7 @@ class Manifest
 
     public function uninstall()
     {
-        if ($flags & PLUGIN_LIFECYCLE_NOTIFY)
+        if ($this->plugin->flags & PLUGIN_LIFECYCLE_NOTIFY)
         {
             load_plugin($this->manifest->name, true);
             callback_event('plugin_lifecycle.'.$this->manifest->name, 'disabled');
