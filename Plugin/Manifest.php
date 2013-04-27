@@ -2,6 +2,7 @@
 
 namespace Rah\TextpatternPluginInstaller\Plugin;
 use Rah\TextpatternPluginInstaller\Textpattern\Find as Textpattern;
+use Netcarver\Textile\Parser as Textile;
 
 /**
  * Process the manifest configuration.
@@ -301,7 +302,7 @@ class Manifest
 
         if ($out)
         {
-            $textile = new Textpattern_Textile_Parser();
+            $textile = new Textile();
             return $textile->TextileRestricted(implode(n, $out), 0, 0);
         }
 
