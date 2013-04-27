@@ -113,6 +113,12 @@ class Manifest
 
     public function update()
     {
+        if ($this->isInstalled() === false)
+        {
+            $this->install();
+            return;
+        }
+
         $r = safe_update(
             'txp_plugin',
             "author = '".doSlash($this->manifest->author)."',
@@ -141,6 +147,12 @@ class Manifest
 
     public function install()
     {
+        if ($this->isInstalled() === true)
+        {
+            $this->update();
+            return;
+        }
+
         $r = safe_insert(
             'txp_plugin',
             "name = '".doSlash($this->manifest->name)."',
@@ -182,6 +194,17 @@ class Manifest
             callback_event('plugin_lifecycle.'.$this->manifest->name, 'installed');
             callback_event('plugin_lifecycle.'.$this->manifest->name, 'enabled');
         }
+    }
+
+    /**
+     * Checks if a plugin is installed.
+     *
+     * @return bool
+     */
+
+    protected function isInstalled()
+    {
+        return safe_count('txp_plugin', "name = '".doSlash($this->manifest->name)."'") > 0;
     }
 
     /**
