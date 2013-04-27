@@ -1,0 +1,11 @@
+h1. Textpattern Plugin Installer for Composer
+
+p. ...or what may hopefully end up being an installer for Composer. Still work in progress.
+
+h2. Basics
+
+p. This installer works by scanning composer.json's sibling and parent directories for a Textpattern installation. If found, it injects Textpattern to the Composer process. It then collects and parses the plugin package and installs it to the Textpattern installation's database, invoking plugin-lifecycle updaters and installers as needed.
+
+h2. Requirements
+
+p. Configured and functional, existing Textpattern installation.
