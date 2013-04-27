@@ -57,7 +57,7 @@ class Manifest
      * @return string|bool The path to the manifest file, or FALSE
      */
 
-    public function find($directory)
+    protected function find($directory)
     {
         $iterator = new \RecursiveDirectoryIterator(realpath($directory));
         $iterator = new \RecursiveIteratorIterator($iterator);
@@ -102,7 +102,7 @@ class Manifest
      * Imports plugin manifest files to the database.
      */
 
-    public function import()
+    protected function import()
     {
         $this->plugin->code = $this->template();
         $this->plugin->md5 = md5($this->plugin->code);
