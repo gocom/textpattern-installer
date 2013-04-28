@@ -110,12 +110,31 @@ class Manifest
     protected function import()
     {
         $this->plugin = new Package();
+        $this->plugin->name = $this->manifest->name;
+        $this->plugin->version = $this->manifest->version;
+        $this->plugin->author = $this->manifest->author;
+        $this->plugin->author_uri = $this->manifest->author_uri;
+        $this->plugin->description = $this->manifest->description;
+        $this->plugin->type = $this->manifest->type;
+        $this->plugin->order = (int) $this->manifest->order;
+        $this->plugin->allow_html_help = 1;
         $this->plugin->code = $this->code();
         $this->plugin->md5 = md5($this->plugin->code);
         $this->plugin->flags = (int) $this->manifest->flags;
         $this->plugin->code = $this->code();
         $this->plugin->help = $this->help();
         $this->plugin->textpack = $this->textpack();
+    }
+
+    /**
+     * Packages the plugin data.
+     *
+     * @return string
+     */
+
+    protected function package()
+    {
+        return base64_encode(gzencode(serialize($this->plugin)));
     }
 
     /**
