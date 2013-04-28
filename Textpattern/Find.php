@@ -57,6 +57,11 @@ class Find
  
     public function find($directory)
     {
+        if (file_exists($directory) && is_dir($directory) && is_readable($directory))
+        {
+            return false;
+        }
+
         $iterator = new \RecursiveDirectoryIterator(realpath($directory));
         $iterator = new \RecursiveIteratorIterator($iterator);
 
