@@ -2,9 +2,6 @@
     "name": "rah/textpattern-plugin-installer",
     "type": "composer-installer",
     "license": "GPLv2",
-    "require": {
-        "netcarver/textile": "3.5.*"
-    },
     "autoload": {
         "psr-0": {"Rah\\TextpatternPluginInstaller\\": ""}
     },
