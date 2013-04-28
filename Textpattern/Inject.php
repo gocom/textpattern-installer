@@ -64,7 +64,7 @@ if (!Inject::$ready && new Textpattern() && Textpattern::$path)
 
     require_once './publish.php';
 
-    $theme = theme::init();
+    $theme = \theme::init();
     require_once './include/txp_plugin.php';
 
     set_pref('admin_side_plugins', Inject::$admin_side_plugins);
