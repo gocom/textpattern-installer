@@ -53,6 +53,9 @@ if (!Inject::$ready && new Textpattern() && Textpattern::$path)
     require_once './lib/constants.php';
     require_once './lib/txplib_misc.php';
     require_once './lib/txplib_db.php';
+    require_once './lib/txplib_head.php';
+    require_once './lib/txplib_theme.php';
+    require_once './lib/txplib_validator.php';
 
     Inject::$plugins = get_pref('use_plugins', 1, true);
     Inject::$admin_side_plugins = get_pref('admin_side_plugins', 1, true);
