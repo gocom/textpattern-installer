@@ -1,11 +1,28 @@
 h1. Textpattern Plugin Installer for Composer
 
-p. ...or what may hopefully end up being an installer for Composer. Still work in progress.
+p. ...or what may hopefully end up being an installer for Composer. Still work in progress. Currently in alpha.
 
 h2. Basics
 
 p. This installer works by scanning composer.json's sibling and parent directories for a Textpattern installation. If found, it injects Textpattern to the Composer process. It then collects and parses the plugin package and installs it to the Textpattern installation's database, invoking plugin-lifecycle updaters and installers as needed.
 
-h2. Requirements
+h2. Requirements and supports
 
-p. Configured and functional, existing Textpattern installation.
+p. Configured and functional, existing Textpattern installation. Supports Textpattern 4.5.0 and newer.
+
+h2. Using in your plugin package
+
+p. Include the installer in your composer.json by adding it as a dependency and change the type to @textpattern-plugin@.
+
+bc. {
+    "type": "textpattern-plugin",
+    "require": {
+        "rah/textpattern-plugin-installer" : "1.0.0-alpha"
+    }
+}
+
+h2. Changelog
+
+h3. 1.0.0-apha - 2013/04/28
+
+* The first alpha.
