@@ -34,6 +34,14 @@ class Manifest
     protected $plugin;
 
     /**
+     * Package plugin installer.
+     *
+     * @var string
+     */
+
+    protected $package;
+
+    /**
      * Constructor.
      */
 
@@ -43,6 +51,7 @@ class Manifest
         {
             $this->dir = dirname($manifest);
             $this->import();
+            $this->package();
         }
         else
         {
@@ -87,20 +96,11 @@ class Manifest
 
     public function uninstall()
     {
-        if ($this->isInstalled() === false)
-        {
-            return;
-        }
-
-        if ($this->plugin->flags & PLUGIN_LIFECYCLE_NOTIFY)
-        {
-            load_plugin($this->manifest->name, true);
-            callback_event('plugin_lifecycle.'.$this->manifest->name, 'disabled');
-            callback_event('plugin_lifecycle.'.$this->manifest->name, 'deleted');
-        }
-
-        safe_delete('txp_plugin', "name = '".doSlash($this->manifest->name)."'");
-        safe_delete('txp_lang', "owner = '".doSlash($this->manifest->name)."'");
+        $_POST['selected'] = array($this->manifest->name);
+        $_POST['edit_method'] = 'delete';
+        ob_start();
+        plugin_multi_edit();
+        ob_end_clean();
     }
 
     /**
@@ -129,13 +129,11 @@ class Manifest
 
     /**
      * Packages the plugin data.
-     *
-     * @return string
      */
 
     protected function package()
     {
-        return base64_encode(gzencode(serialize($this->plugin)));
+        $this->package = base64_encode(gzencode(serialize($this->plugin)));
     }
 
     /**
@@ -144,32 +142,10 @@ class Manifest
 
     public function update()
     {
-        if ($this->isInstalled() === false)
-        {
-            $this->install();
-            return;
-        }
-
-        $r = safe_update(
-            'txp_plugin',
-            "author = '".doSlash($this->manifest->author)."',
-            author_uri = '".doSlash($this->manifest->author_uri)."',
-            version = '".doSlash($this->manifest->version)."',
-            description = '".doSlash($this->manifest->description)."',
-            help = '".doSlash($this->plugin->help)."',
-            code = '".doSlash($this->plugin->code)."',
-            code_restore = '".doSlash($this->plugin->code)."',
-            code_md5 = '".doSlash($this->plugin->md5)."',
-            type = '".doSlash($this->manifest->type)."',
-            load_order = '".doSlash($this->manifest->order)."',
-            flags = ".intval($this->manifest->flags),
-            "name = '".doSlash($this->manifest->name)."'"
-        );
-
-        if ($r)
-        {
-            $this->post();
-        }
+        $_POST['plugin64'] = $this->package;
+        ob_start();
+        plugin_install();
+        ob_end_clean();
     }
 
     /**
@@ -178,64 +154,10 @@ class Manifest
 
     public function install()
     {
-        if ($this->isInstalled() === true)
-        {
-            $this->update();
-            return;
-        }
-
-        $r = safe_insert(
-            'txp_plugin',
-            "name = '".doSlash($this->manifest->name)."',
-            status = 1,
-            author = '".doSlash($this->manifest->author)."',
-            author_uri = '".doSlash($this->manifest->author_uri)."',
-            version = '".doSlash($this->manifest->version)."',
-            description = '".doSlash($this->manifest->description)."',
-            help = '".doSlash($this->plugin->help)."',
-            code = '".doSlash($this->plugin->code)."',
-            code_restore = '".doSlash($this->plugin->code)."',
-            code_md5 = '".doSlash($this->plugin->md5)."',
-            type = '".doSlash($this->manifest->type)."',
-            load_order = '".doSlash($this->manifest->order)."',
-            flags = ".intval($this->manifest->flags)
-        );
-
-        if ($r)
-        {
-            $this->post();
-        }
-    }
-
-    /**
-     * Runs post install process.
-     */
-
-    protected function post()
-    {
-        if ($this->plugin->textpack)
-        {
-            $textpack = '#@owner '.$this->manifest->name.n.$this->plugin->textpack;
-            install_textpack($textpack, false);
-        }
-
-        if ($this->plugin->flags & PLUGIN_LIFECYCLE_NOTIFY)
-        {
-            load_plugin($this->manifest->name, true);
-            callback_event('plugin_lifecycle.'.$this->manifest->name, 'installed');
-            callback_event('plugin_lifecycle.'.$this->manifest->name, 'enabled');
-        }
-    }
-
-    /**
-     * Checks if a plugin is installed.
-     *
-     * @return bool
-     */
-
-    protected function isInstalled()
-    {
-        return safe_count('txp_plugin', "name = '".doSlash($this->manifest->name)."'") > 0;
+        $_POST['plugin64'] = $this->package;
+        ob_start();
+        plugin_install();
+        ob_end_clean();
     }
 
     /**
@@ -325,22 +247,7 @@ class Manifest
             $out[] = $this->manifest->help;
         }
 
-        if ($out)
-        {
-            if (class_exists('Textpattern_Textile_Parser'))
-            {
-                $textile = new \Textpattern_Textile_Parser();
-                return $textile->TextileRestricted(implode(n, $out), 0, 0);
-            }
-            else
-            {
-                include_once txpath.'/lib/classTextile.php';
-                $textile = new Textile(get_pref('doctype'));
-                return $textile->TextileRestricted(implode(n, $out));
-            }
-        }
-
-        return '';
+        return implode(n, $out);
     }
 
     /**

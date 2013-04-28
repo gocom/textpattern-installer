@@ -60,6 +60,7 @@ if (!Inject::$ready && new Textpattern() && Textpattern::$path)
     set_pref('admin_side_plugins', 0);
 
     require_once './publish.php';
+    require_once './include/txp_plugin.php';
 
     set_pref('admin_side_plugins', Inject::$admin_side_plugins);
     set_pref('use_plugins', Inject::$plugins);
