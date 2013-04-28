@@ -307,8 +307,17 @@ class Manifest
 
         if ($out)
         {
-            $textile = new \Textpattern_Textile_Parser();
-            return $textile->TextileRestricted(implode(n, $out), 0, 0);
+            if (class_exists('Textpattern_Textile_Parser'))
+            {
+                $textile = new \Textpattern_Textile_Parser();
+                return $textile->TextileRestricted(implode(n, $out), 0, 0);
+            }
+            else
+            {
+                include_once txpath.'/lib/classTextile.php';
+                $textile = new Textile(get_pref('doctype'));
+                return $textile->TextileRestricted(implode(n, $out));
+            }
         }
 
         return '';
