@@ -42,6 +42,8 @@ class Inject
 
 if (!Inject::$ready && new Textpattern() && Textpattern::$path)
 {
+    global $txpcfg, $DB, $connected;
+
     Inject::$ready = true;
     Inject::$cwd = getcwd();
     chdir(Textpattern::$path);
