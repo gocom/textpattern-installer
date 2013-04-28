@@ -117,12 +117,13 @@ class Manifest
         $this->plugin->description = $this->manifest->description;
         $this->plugin->type = $this->manifest->type;
         $this->plugin->order = (int) $this->manifest->order;
-        $this->plugin->allow_html_help = 1;
+        $this->plugin->allow_html_help = 0;
         $this->plugin->code = $this->code();
         $this->plugin->md5 = md5($this->plugin->code);
         $this->plugin->flags = (int) $this->manifest->flags;
         $this->plugin->code = $this->code();
-        $this->plugin->help = $this->help();
+        $this->plugin->help = '';
+        $this->plugin->help_raw = $this->help();
         $this->plugin->textpack = $this->textpack();
     }
 
