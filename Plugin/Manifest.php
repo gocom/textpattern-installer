@@ -133,7 +133,7 @@ class Manifest
 
     protected function package()
     {
-        $this->package = base64_encode(gzencode(serialize($this->plugin)));
+        $this->package = base64_encode(gzencode(serialize((array) $this->plugin)));
     }
 
     /**
@@ -143,9 +143,9 @@ class Manifest
     public function update()
     {
         $_POST['plugin64'] = $this->package;
-        //ob_start();
+        ob_start();
         plugin_install();
-        //ob_end_clean();
+        ob_end_clean();
     }
 
     /**
@@ -155,9 +155,9 @@ class Manifest
     public function install()
     {
         $_POST['plugin64'] = $this->package;
-        //ob_start();
+        ob_start();
         plugin_install();
-        //ob_end_clean();
+        ob_end_clean();
     }
 
     /**
