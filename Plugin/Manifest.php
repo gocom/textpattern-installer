@@ -2,7 +2,7 @@
 
 namespace Rah\TextpatternPluginInstaller\Plugin;
 use Rah\TextpatternPluginInstaller\Textpattern\Find as Textpattern;
-use \Netcarver\Textile\Parser as Textile;
+use Netcarver\Textile\Parser as Textile;
 
 /**
  * Process the manifest configuration.

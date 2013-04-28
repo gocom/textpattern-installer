@@ -49,6 +49,7 @@ if (!Inject::$ready && new Textpattern() && Textpattern::$path)
     chdir(Textpattern::$path);
     define('txpinterface', 'admin');
 
+    include_once dirname(dirname(dirname(dirname(dirname(dirname(__FILE__)))))).'/autoload.php';
     require_once './config.php';
     require_once './lib/constants.php';
     require_once './lib/txplib_misc.php';
