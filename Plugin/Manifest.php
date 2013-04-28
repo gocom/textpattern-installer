@@ -91,19 +91,6 @@ class Manifest
     }
 
     /**
-     * Uninstalls a plugin.
-     */
-
-    public function uninstall()
-    {
-        $_POST['selected'] = array($this->manifest->name);
-        $_POST['edit_method'] = 'delete';
-        ob_start();
-        plugin_multi_edit();
-        ob_end_clean();
-    }
-
-    /**
      * Imports plugin manifest files to the database.
      */
 
@@ -155,6 +142,19 @@ class Manifest
     public function update()
     {
         $this->install();
+    }
+
+    /**
+     * Uninstalls a plugin.
+     */
+
+    public function uninstall()
+    {
+        $_POST['selected'] = array($this->manifest->name);
+        $_POST['edit_method'] = 'delete';
+        ob_start();
+        plugin_multi_edit();
+        ob_end_clean();
     }
 
     /**
