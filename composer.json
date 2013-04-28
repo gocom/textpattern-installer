@@ -11,5 +11,5 @@
     "target-dir": "Rah/TextpatternPluginInstaller",
     "extra": {
         "class": "Rah\\TextpatternPluginInstaller\\Installer"
-    },
+    }
 }
