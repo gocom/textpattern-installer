@@ -137,18 +137,6 @@ class Manifest
     }
 
     /**
-     * Updates a plugin.
-     */
-
-    public function update()
-    {
-        $_POST['plugin64'] = $this->package;
-        ob_start();
-        plugin_install();
-        ob_end_clean();
-    }
-
-    /**
      * Installs a plugin.
      */
 
@@ -158,6 +146,15 @@ class Manifest
         ob_start();
         plugin_install();
         ob_end_clean();
+    }
+
+    /**
+     * Updates a plugin.
+     */
+
+    public function update()
+    {
+        $this->install();
     }
 
     /**
