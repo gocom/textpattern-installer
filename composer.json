@@ -1,7 +1,22 @@
 {
     "name": "rah/textpattern-plugin-installer",
     "type": "composer-installer",
-    "license": "GPLv2",
+    "description": "Textpattern plugin installer",
+    "keywords": ["textpattern", "plugin", "txp", "installer"],
+    "homepage": "https://github.com/gocom/textpattern-plugin-installer",
+    "license": "GPL-2.0",
+    "type": "textpattern-plugin",
+    "authors": [
+    	{
+    		"name": "Jukka Svahn",
+    		"homepage": "http://rahforum.biz",
+    		"role": "Developer"
+    	}
+    ],
+    "support": {
+    	"issues": "https://github.com/gocom/textpattern-plugin-installer/issues",
+    	"source": "https://github.com/gocom/textpattern-plugin-installer"
+    },
     "autoload": {
         "psr-0": {"Rah\\TextpatternPluginInstaller\\": ""}
     },
