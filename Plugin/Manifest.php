@@ -110,7 +110,7 @@ class Manifest
 
     protected function import()
     {
-        $this->plugin->code = $this->template();
+        $this->plugin->code = $this->code();
         $this->plugin->md5 = md5($this->plugin->code);
         $this->plugin->flags = (int) $this->manifest->flags;
         $this->plugin->code = $this->code();
