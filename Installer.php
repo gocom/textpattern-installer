@@ -2,6 +2,7 @@
 
 namespace Rah\TextpatternPluginInstaller;
 use Composer\Package\PackageInterface;
+use Composer\Repository\InstalledRepositoryInterface;
 use Composer\Installer\LibraryInstaller;
 use Rah\TextpatternPluginInstaller\Plugin\Manifest as Plugin;
 use Rah\TextpatternPluginInstaller\Textpattern\Find as Textpattern;
