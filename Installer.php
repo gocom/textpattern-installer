@@ -34,8 +34,8 @@ class Installer extends LibraryInstaller
 
     public function install(InstalledRepositoryInterface $repo, PackageInterface $package)
     {
-        parent::install($repo, $package);
         new Textpattern();
+        parent::install($repo, $package);
         $plugin = new Plugin($this->getInstallPath($package));
         $plugin->install();
     }
@@ -50,8 +50,8 @@ class Installer extends LibraryInstaller
 
     public function update(InstalledRepositoryInterface $repo, PackageInterface $initial, PackageInterface $target)
     {
-        parent::update($repo, $initial, $target);
         new Textpattern();
+        parent::update($repo, $initial, $target);
         $plugin = new Plugin($this->getInstallPath($target));
         $plugin->update();
     }
@@ -65,8 +65,8 @@ class Installer extends LibraryInstaller
 
     public function uninstall(InstalledRepositoryInterface $repo, PackageInterface $package)
     {
-        parent::uninstall($repo, $package);
         new Textpattern();
+        parent::uninstall($repo, $package);
         $plugin = new Plugin($this->getInstallPath($package));
         $plugin->uninstall();
     }
