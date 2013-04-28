@@ -28,7 +28,7 @@ class Manifest
     /**
      * Stores the plugin contents.
      *
-     * @var stdClass
+     * @var Package
      */
 
     protected $plugin;
@@ -109,6 +109,7 @@ class Manifest
 
     protected function import()
     {
+        $this->plugin = new Package();
         $this->plugin->code = $this->code();
         $this->plugin->md5 = md5($this->plugin->code);
         $this->plugin->flags = (int) $this->manifest->flags;
