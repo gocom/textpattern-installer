@@ -22,7 +22,7 @@ class Find
      * @var array
      */
 
-    protected $candidates = array('./', '../', '../../', '../../../', '../../../../', '../../../../../../');
+    protected $candidates = array('./', '../');
 
     /**
      * Constructor.
