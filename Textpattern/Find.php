@@ -3,7 +3,7 @@
 namespace Rah\TextpatternPluginInstaller\Textpattern;
 
 /**
- * Finds Textpattern installation location and glues it to the process.
+ * Finds closest Textpattern installation location.
  */
 
 class Find
