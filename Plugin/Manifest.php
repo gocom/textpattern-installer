@@ -35,13 +35,13 @@ class Manifest extends Base
                     {
                         $this->dir = dirname($file);
                         $this->import();
-                        return $file;
+                        $directory = true;
                     }
                 }
             }
         }
 
-        return false;
+        return $directory === true;
     }
 
     /**
