@@ -36,7 +36,6 @@ class Find
             {
                 if (self::$path = $this->find($candidate))
                 {
-                    new Inject();
                     break;
                 }
             }

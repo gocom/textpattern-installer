@@ -1,6 +1,7 @@
 <?php
 
 namespace Rah\TextpatternPluginInstaller\Plugin;
+use Rah\TextpatternPluginInstaller\Textpattern\Inject as Textpattern;
 
 /**
  * Process the manifest configuration.
@@ -27,6 +28,8 @@ class Manifest extends Base
     {
         if ($iterator = parent::find($directory))
         {
+            new Textpattern();
+
             foreach ($iterator as $file)
             {
                 if (basename($file) === 'manifest.json' && is_file($file) && is_readable($file) && $contents = file_get_contents($file))

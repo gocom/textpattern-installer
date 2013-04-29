@@ -1,6 +1,7 @@
 <?php
 
 namespace Rah\TextpatternPluginInstaller\Plugin;
+use Rah\TextpatternPluginInstaller\Textpattern\Inject as Textpattern;
 
 /**
  * A plugin package.
@@ -35,10 +36,11 @@ class Package extends Base
     }
 
     /**
-     * Skip packager.
+     * Skip packager, just inject Textpattern.
      */
 
     protected function package()
     {
+        new Textpattern();
     }
 }
