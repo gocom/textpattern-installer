@@ -17,7 +17,7 @@ p. Include the installer in your composer.json by adding it as a dependency and 
 bc. {
     "type": "textpattern-plugin",
     "require": {
-        "rah/textpattern-plugin-installer" : "1.0.0-alpha"
+        "rah/textpattern-plugin-installer" : "1.0.0-alpha.1"
     }
 }
 
