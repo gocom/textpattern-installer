@@ -33,6 +33,8 @@ class Manifest extends Base
                 {
                     if (($this->manifest = @json_decode($contents)) && isset($this->manifest->name) && $this->manifest->name === basename(dirname($file)))
                     {
+                        $this->dir = dirname($file);
+                        $this->import();
                         return $file;
                     }
                 }

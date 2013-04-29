@@ -38,10 +38,10 @@ abstract class Base
 
     public function __construct($directory)
     {
-        if ($manifest = $this->find($directory))
+        $this->dir = $directory;
+
+        if ($this->find($directory))
         {
-            $this->dir = dirname($manifest);
-            $this->import();
             $this->package();
         }
         else
