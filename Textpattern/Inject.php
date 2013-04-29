@@ -48,6 +48,7 @@ if (!Inject::$ready && new Textpattern() && Textpattern::$path)
     Inject::$cwd = getcwd();
     chdir(Textpattern::$path);
     define('txpinterface', 'admin');
+    define('txpath', Textpattern::$path);
 
     require_once './config.php';
     require_once './lib/constants.php';
