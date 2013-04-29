@@ -30,6 +30,11 @@ p. The installer adds the following types for packages to use:
 
 h2. Changelog
 
+h3. 1.0.0-alpha.2 - 2013/04/29
+
+* Fixed: Installed packages don't incorrectly report them as modified. Didn't calculate MD5 checksums properly.
+* Changed: Does Textpattern injecting in the package type handler itself.
+
 h3. 1.0.0-alpha.1 - 2013/04/29
 
 * Fixed: errors.
