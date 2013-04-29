@@ -83,10 +83,8 @@ abstract class Base
 
     public function install()
     {
-        $_POST['plugin64'] = $this->package;
-        ob_start();
-        plugin_install();
-        ob_end_clean();
+        $this->update();
+        safe_update('txp_plugin', 'status = 1', "name = '".doSlash($this->plugin->name)."'");
     }
 
     /**
@@ -95,7 +93,10 @@ abstract class Base
 
     public function update()
     {
-        $this->install();
+        $_POST['plugin64'] = $this->package;
+        ob_start();
+        plugin_install();
+        ob_end_clean();
     }
 
     /**
