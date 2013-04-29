@@ -51,7 +51,7 @@ abstract class Base extends LibraryInstaller
     {
         new Textpattern();
         parent::install($repo, $package);
-        $plugin = new $textpatternPackager($this->getInstallPath($package));
+        $plugin = new $this->textpatternPackager($this->getInstallPath($package));
         $textpatternPackager->install();
     }
 
@@ -67,7 +67,7 @@ abstract class Base extends LibraryInstaller
     {
         new Textpattern();
         parent::update($repo, $initial, $target);
-        $plugin = new $textpatternPackager($this->getInstallPath($target));
+        $plugin = new $this->textpatternPackager($this->getInstallPath($target));
         $plugin->update();
     }
 
@@ -82,7 +82,7 @@ abstract class Base extends LibraryInstaller
     {
         new Textpattern();
         parent::uninstall($repo, $package);
-        $plugin = new $textpatternPackager($this->getInstallPath($package));
+        $plugin = new $this->textpatternPackager($this->getInstallPath($package));
         $plugin->uninstall();
     }
 }
