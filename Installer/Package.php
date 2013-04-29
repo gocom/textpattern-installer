@@ -3,7 +3,9 @@
 namespace Rah\TextpatternPluginInstaller\Installer;
 
 /**
- * Installer for the manifest format.
+ * Installer for compiled plugin package collection repositories.
+ *
+ * Installs all installer packages found in the composer package.
  */
 
 class Package extends Base
