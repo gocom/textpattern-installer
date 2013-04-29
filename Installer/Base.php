@@ -52,7 +52,7 @@ abstract class Base extends LibraryInstaller
         new Textpattern();
         parent::install($repo, $package);
         $plugin = new $this->textpatternPackager($this->getInstallPath($package));
-        $textpatternPackager->install();
+        $plugin->install();
     }
 
     /**
