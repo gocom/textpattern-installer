@@ -1,7 +1,6 @@
 <?php
 
 namespace Rah\TextpatternPluginInstaller\Plugin;
-use Rah\TextpatternPluginInstaller\Textpattern\Find as Textpattern;
 
 /**
  * Process the manifest configuration.
