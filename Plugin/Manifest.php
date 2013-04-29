@@ -48,22 +48,23 @@ class Manifest extends Base
 
     protected function import()
     {
-        $this->plugin = new Package();
-        $this->plugin->name = $this->manifest->name;
-        $this->plugin->version = $this->manifest->version;
-        $this->plugin->author = $this->manifest->author;
-        $this->plugin->author_uri = $this->manifest->author_uri;
-        $this->plugin->description = $this->manifest->description;
-        $this->plugin->type = $this->manifest->type;
-        $this->plugin->order = (int) $this->manifest->order;
-        $this->plugin->allow_html_help = 0;
-        $this->plugin->code = $this->code();
-        $this->plugin->md5 = md5($this->plugin->code);
-        $this->plugin->flags = (int) $this->manifest->flags;
-        $this->plugin->code = $this->code();
-        $this->plugin->help = '';
-        $this->plugin->help_raw = $this->help();
-        $this->plugin->textpack = $this->textpack();
+        $plugin = (object) null;
+        $plugin->name = $this->manifest->name;
+        $plugin->version = $this->manifest->version;
+        $plugin->author = $this->manifest->author;
+        $plugin->author_uri = $this->manifest->author_uri;
+        $plugin->description = $this->manifest->description;
+        $plugin->type = $this->manifest->type;
+        $plugin->order = (int) $this->manifest->order;
+        $plugin->allow_html_help = 0;
+        $plugin->code = $this->code();
+        $plugin->md5 = md5($this->plugin->code);
+        $plugin->flags = (int) $this->manifest->flags;
+        $plugin->code = $this->code();
+        $plugin->help = '';
+        $plugin->help_raw = $this->help();
+        $plugin->textpack = $this->textpack();
+        $this->plugin[] = $plugin;
     }
 
     /**

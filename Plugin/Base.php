@@ -17,20 +17,20 @@ abstract class Base
     protected $dir;
 
     /**
-     * Stores the plugin contents.
+     * Stores an array of plugin contents.
      *
-     * @var Package
+     * @var array
      */
 
-    protected $plugin;
+    protected $plugin = array();
 
     /**
-     * Packaged plugin installer.
+     * Stores an array of oackaged plugin installers.
      *
-     * @var string
+     * @var array
      */
 
-    protected $package;
+    protected $package = array();
 
     /**
      * Constructor.
@@ -74,7 +74,10 @@ abstract class Base
 
     protected function package()
     {
-        $this->package = base64_encode(gzencode(serialize((array) $this->plugin)));
+        foreach ((array) $this->plugin as $plugin)
+        {
+            $this->package[] = base64_encode(gzencode(serialize((array) $plugin)));
+        }
     }
 
     /**
@@ -84,7 +87,11 @@ abstract class Base
     public function install()
     {
         $this->update();
-        safe_update('txp_plugin', 'status = 1', "name = '".doSlash($this->plugin->name)."'");
+
+        foreach ((array) $this->plugin as $plugin)
+        {
+            safe_update('txp_plugin', 'status = 1', "name = '".doSlash($plugin->name)."'");
+        }
     }
 
     /**
@@ -93,10 +100,13 @@ abstract class Base
 
     public function update()
     {
-        $_POST['plugin64'] = $this->package;
-        ob_start();
-        plugin_install();
-        ob_end_clean();
+        foreach ((array) $this->package as $package)
+        {
+            $_POST['plugin64'] = $package;
+            ob_start();
+            plugin_install();
+            ob_end_clean();
+        }
     }
 
     /**
@@ -105,7 +115,13 @@ abstract class Base
 
     public function uninstall()
     {
-        $_POST['selected'] = array($this->plugin->name);
+        $_POST['selected'] = array();
+
+        foreach ((array) $this->plugin as $plugin)
+        {
+            $_POST['selected'][] = $plugin->name;
+        }
+
         $_POST['edit_method'] = 'delete';
         ob_start();
         plugin_multi_edit();
