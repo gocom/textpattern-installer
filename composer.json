@@ -5,7 +5,6 @@
     "keywords": ["textpattern", "plugin", "txp", "installer"],
     "homepage": "https://github.com/gocom/textpattern-plugin-installer",
     "license": "GPL-2.0",
-    "type": "textpattern-plugin",
     "authors": [
     	{
     		"name": "Jukka Svahn",
