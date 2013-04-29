@@ -21,7 +21,7 @@ class Manifest extends Base
      * Find the plugin project directory and manifest from the package.
      *
      * @param  string      $directory
-     * @return string|bool The path to the manifest file, or FALSE
+     * @return bool
      */
 
     protected function find($directory)
