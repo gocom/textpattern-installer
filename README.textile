@@ -12,7 +12,7 @@ p. Configured and functional, existing Textpattern installation. Supports Textpa
 
 h2. Using in your plugin package
 
-p. Include the installer in your composer.json by adding it as a dependency and change the type to @textpattern-plugin@.
+p. Include the installer in your composer.json by adding it as a dependency and change the type to @textpattern-plugin@ or @textpattern-plugin-package@.
 
 bc. {
     "type": "textpattern-plugin",
@@ -21,8 +21,21 @@ bc. {
     }
 }
 
+h2. Package types
+
+p. The installer adds the following types for packages to use:
+
+* textpattern-plugin: The package contains "manifest.json":https://github.com/gocom/abc_plugin formatted plugin sources.
+* textpattern-plugin-package: The package contains collection of compiled plugin installer packages. All found packages are installed.
+
 h2. Changelog
 
-h3. 1.0.0-apha - 2013/04/28
+h3. 1.0.0-alpha.1 - 2013/04/29
+
+* Fixed: errors.
+* Added: new type "textpattern-plugin-package".
+* Added: Supports multiple plugins in one package.
+
+h3. 1.0.0-alpha - 2013/04/28
 
 * The first alpha.
