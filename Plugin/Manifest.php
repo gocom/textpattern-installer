@@ -139,9 +139,14 @@ class Manifest extends Base
             return '';
         }
 
+        if (($cwd = getcwd()) === false || !chdir($this->dir . '/textpacks'))
+        {
+            return '';
+        }
+
         $out = array();
 
-        foreach ((array) glob($this->dir . '/textpacks/*.textpack', GLOB_NOSORT) as $file)
+        foreach ((array) glob('*.textpack', GLOB_NOSORT) as $file)
         {
             $file = file_get_contents($file);
 
@@ -154,6 +159,7 @@ class Manifest extends Base
             $out[] =  $file;
         }
 
+        chdir($cwd);
         return implode(n, $out);
     }
 
