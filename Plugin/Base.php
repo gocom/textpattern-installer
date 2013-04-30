@@ -68,7 +68,7 @@ abstract class Base
         }
         else
         {
-            throw new \InvalidArgumentException('The plugin directory was not found.');
+            throw new \InvalidArgumentException('No plugins found in the package.');
         }
     }
 
