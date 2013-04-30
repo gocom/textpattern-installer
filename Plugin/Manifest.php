@@ -184,7 +184,12 @@ class Manifest extends Base
         {
             foreach ((array) $this->manifest->help->file as $file)
             {
-                $out[] = file_get_contents($this->path($file));
+                $file = $this->path($file);
+
+                if (file_exists($file) && is_file($file) && is_readable($file))
+                {
+                    $out[] = file_get_contents($file);
+                }
             }
         }
         else if (isset($this->manifest->help))
