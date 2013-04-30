@@ -17,7 +17,7 @@ p. Include the installer in your composer.json by adding it as a dependency and 
 bc. {
     "type": "textpattern-plugin",
     "require": {
-        "rah/textpattern-plugin-installer" : "1.0.0-alpha.2"
+        "rah/textpattern-plugin-installer" : "1.0.0-alpha.3"
     }
 }
 
@@ -29,6 +29,14 @@ p. The installer adds the following types for packages to use:
 * textpattern-plugin-package: The package contains collection of compiled plugin installer packages. All found packages are installed.
 
 h2. Changelog
+
+h3. 1.0.0-alpha.3 - 2013/04/30
+
+* Fixed: Check permissions before trying to read help file.
+* Fixed: Only try to read contents of actual files when constructing help documentation.
+* Fixed: Works with any path structures, containing any characters in filenames, multi-byte safe.
+* Added: Strips surrounding whitespace from the imported PHP source code in addition to the closing tags.
+* Changed: Searches Textpattern installation from the current and the child directories, but doesn't climb up. Otherwise it has the change of hooking to the wrong installation.
 
 h3. 1.0.0-alpha.2 - 2013/04/29
 
