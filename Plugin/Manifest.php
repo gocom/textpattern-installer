@@ -134,12 +134,14 @@ class Manifest extends Base
 
     protected function textpack()
     {
-        if (!file_exists($this->dir . '/textpacks') || !is_dir($this->dir . '/textpacks'))
+        $textpacks = $this->dir . '/textpacks';
+
+        if (!file_exists($textpacks) || !is_dir($textpacks))
         {
             return '';
         }
 
-        if (($cwd = getcwd()) === false || !chdir($this->dir . '/textpacks'))
+        if (($cwd = getcwd()) === false || !chdir($textpacks))
         {
             return '';
         }
