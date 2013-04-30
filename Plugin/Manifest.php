@@ -136,7 +136,7 @@ class Manifest extends Base
     {
         $textpacks = $this->dir . '/textpacks';
 
-        if (!file_exists($textpacks) || !is_dir($textpacks))
+        if (!file_exists($textpacks) || !is_dir($textpacks) || !is_readable($textpacks))
         {
             return '';
         }
@@ -150,6 +150,11 @@ class Manifest extends Base
 
         foreach ((array) glob('*.textpack', GLOB_NOSORT) as $file)
         {
+            if (!is_file($textpacks) || !is_readable($textpacks))
+            {
+                continue;
+            }
+
             $file = file_get_contents($file);
 
             if (!preg_match('/^#language|\n#language\s/', $file))
