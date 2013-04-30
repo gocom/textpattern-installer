@@ -150,7 +150,7 @@ class Manifest extends Base
 
         foreach ((array) glob('*.textpack', GLOB_NOSORT) as $file)
         {
-            if (!is_file($textpacks) || !is_readable($textpacks))
+            if (!is_file($file) || !is_readable($file))
             {
                 continue;
             }
