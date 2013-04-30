@@ -26,7 +26,7 @@ namespace Rah\TextpatternPluginInstaller\Plugin;
 use Rah\TextpatternPluginInstaller\Textpattern\Inject as Textpattern;
 
 /**
- * Process the manifest configuration.
+ * Processes the manifest configuration.
  */
 
 class Manifest extends Base

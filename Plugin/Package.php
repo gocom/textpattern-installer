@@ -26,7 +26,7 @@ namespace Rah\TextpatternPluginInstaller\Plugin;
 use Rah\TextpatternPluginInstaller\Textpattern\Inject as Textpattern;
 
 /**
- * A plugin package.
+ * Processes packaged installer collections.
  */
 
 class Package extends Base
