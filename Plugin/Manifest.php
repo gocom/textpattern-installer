@@ -119,7 +119,7 @@ class Manifest extends Base
         {
             if (file_exists($path) && is_file($path) && is_readable($path) && $contents = file_get_contents($path))
             {
-                $out[] = preg_replace('/^<\?(php)?|\?>$/', '', $contents);
+                $out[] = trim(preg_replace('/^<\?(php)?|\?>$/', '', $contents), "\r\n");
             }
         }
 
