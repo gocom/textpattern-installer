@@ -28,6 +28,11 @@ namespace Rah\TextpatternPluginInstaller\Installer;
  * Installer for compiled plugin package collection repositories.
  *
  * Installs all installer packages found in the composer package.
+ * Installers are detected by the standardized naming convention:
+ * {pfx}_{pluginName}_v{version}[_zip}.txt.
+ *
+ * Any file that matches the pattern will be consired as a plugin
+ * package.
  */
 
 class Package extends Base
