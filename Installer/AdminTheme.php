@@ -35,7 +35,7 @@ use Rah\TextpatternPluginInstaller\Textpattern\Find as Textpattern;
 class AdminTheme extends LibraryInstaller
 {
     /**
-     * Supports 'textpattern-admin-side' theme.
+     * Supports 'textpattern-admin-side' packages.
      *
      * @param  string $packageType
      * @return bool
