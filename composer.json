@@ -23,7 +23,8 @@
     "extra": {
         "class": [
             "Rah\\TextpatternPluginInstaller\\Installer\\Manifest",
-            "Rah\\TextpatternPluginInstaller\\Installer\\Package"
+            "Rah\\TextpatternPluginInstaller\\Installer\\Package",
+            "Rah\\TextpatternPluginInstaller\\Installer\\AdminTheme"
         ]
     }
 }
