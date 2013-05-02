@@ -59,18 +59,13 @@ bc. {
     }
 }
 
-h4. Package types
+p. The type should match what your package contains:
 
-p. *textpattern-plugin*
-The package contains "manifest.json":https://github.com/gocom/abc_plugin formatted plugin sources.
+* *textpattern-plugin*: The package contains "manifest.json":https://github.com/gocom/abc_plugin formatted plugin sources.
+* *textpattern-plugin-package*: The package contains collection of compiled plugin installer packages. All found packages are installed.
+* *textpattern-admin-theme*: The package is an admin-side theme. Themes are installed to your ./textpattern/theme directory.
 
-p. *textpattern-plugin-package*
-The package contains collection of compiled plugin installer packages. All found packages are installed.
-
-p. *textpattern-admin-theme*
-The package is an admin-side theme. Themes are installed to your ./textpattern/theme directory.
-
-h3. Requirements and supports
+h2. Requirements and supports
 
 p. As a installer for Textpattern, it requires a configured and functional, existing Textpattern installation. The installer supports Textpattern 4.5.0 and newer.
 
