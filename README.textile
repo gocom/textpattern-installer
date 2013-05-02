@@ -1,33 +1,78 @@
-h1. Textpattern Plugin Installer for Composer
+h1. Textpattern Installer for Composer
 
 p. ...or what may hopefully end up being an installer for Composer. Still work in progress. Currently in alpha.
 
-h2. Basics
+p. Allows managing "Textpattern CMS":http://textpattern.com plugins and themes using "Composer":http://getcomposer.org/ dependency manager. Install, update and manage dependencies your plugin and themes need from a single, common, painless interface. Composer allows you to declare the dependent assets, plugins, themes and libraries your project needs and it will install them in your project for you. No downloading, no navigating on websites, no hours taking going through your plugin collection. Just a single command and a second, that is all it takes once you have adopted Composer.
 
-p. This installer works by scanning composer.json's sibling and parent directories for a Textpattern installation. If found, it injects Textpattern to the Composer process. It then collects and parses the plugin package and installs it to the Textpattern installation's database, invoking plugin-lifecycle updaters and installers as needed.
+h2. Why?
 
-h2. Requirements and supports
+p. Normally installing plugins and themes requires that you navigate websites, read instructions, check requirements and finally download and upload package individually.Each time you need to update your plugins or Textpattern version, you need to go through the same long process that takes more and more time, the more plugins your website uses. With composer, no more.
 
-p. Configured and functional, existing Textpattern installation. Supports Textpattern 4.5.0 and newer.
+p. Any theme and plugin that is available as a Composer package can be installed using a single command once Composer is set up. Wanted to use "rah_replace":http://rahforum.biz/plugins/rah_replace on your site? Wonder if it works with your Textpattern version?
 
-h2. Using in your plugin package
+bc. $ composer.phar require "rah/rah_replace *"
 
-p. Include the installer in your composer.json by adding it as a dependency and change the type to @textpattern-plugin@, @textpattern-plugin-package@ or @textpattern-admin-theme@.
+p. Just a single command. Wanted to update all your plugins, themes and libraries to the most up-to-date available collection?
+
+bc. $ composer.phar update
+
+p. Just a single command. Composer will check your dependencies and updates your plugin collection to the most appropriate version for you. Working in a team using VCS and want to install the dependencies, plugins and themes your project uses?
+
+bc. $ composer.phar install
+
+p. No instructions, no creating symlinks, no committing dependencies to your repository, no manual updating. Composer installs everything for you.
+
+h2. For plugin and theme developers
+
+p. The installer and Composer give developers an easy way to distribute their plugins, libraries and themes. It helps with packaging by removing it entirely, and making managing dependencies simple, both to the package developer and to the end-user. You can deploy and distribute your plugins and other packages directly from their source repositories.
+
+p. Let's say you're developing a plugin using a git repository. Normally, releasing this plugin would involve packaging it into a Textpattern's plugin installer, making the package available for download and then making sure your users know about the new version, and download it manually. With Composer, only thing you need is a tag. Create a tag to your repository, and that is it. The new version is out, Composer knows about it and your users will be able to update to it with the same single command. Easy.
+
+h3. How does the installer work?
+
+p. This installer works by scanning composer.json's sibling directories for a Textpattern installation. If found, it injects Textpattern to the Composer process. It then collects any plugins and themes from the composer package and installs them to your Textpattern installation, invoking plugin-lifecycle updaters and installers as needed. This process can be compatible with, and used by, any plugin or a theme.
+
+h3. Using Composer and the installer for your plugin or theme
+
+p. Getting your plugin or theme to the Composer ecosystem is easy for a developer. Expecting that you are already using version control system (like git), this in requires three steps; making sure your source repository structure can be supported by the installer, adding "composer.json":http://getcomposer.org/doc/02-libraries.md to your repository and submitting the repository link to Composer's central repository, "Packagist.org":https://packagist.org/.
+
+h4. Supported repository formats
+
+p. The installer supports few different type formats. It can use "manifest.json":https://github.com/gocom/abc_plugin formatted plugin source repositories, repositories that contain a collection of compiled plugin installers and "admin-side themes":https://github.com/gocom/abc_theme. Any of these formats can be installed by Composer. If your plugin is using a some other format, adopting one of those is simple. The structures are self-explanatory for any developer by looking at the template repositories.
+
+h4. Adding composer.json
+
+p. Your plugins and themes will be like any other Composer package, the created composer.json can used any "options the there are available":http://getcomposer.org/doc/02-libraries.md. See the basic composer.json files for "abc_theme":https://github.com/gocom/abc_theme and "abc_plugin":https://github.com/gocom/abc_plugin. Abc_theme is a simple example theme repository and the abc_plugin is a plugin. You can find all options composer.json can offer for your package from Composer's "documentation":http://getcomposer.org/doc/04-schema.md.
+
+h4. Naming your package
+
+p. There are few rules when it comes to naming your package. Your vendor name can be anything you want. It's a global vendor name and is not directly used by Textpattern, but to prevent collisions and for namespaces. But, your package name itself matters. The package should be named after your plugin or theme. If your vendor name is @somevendor@ and your plugin is @abc_hello@, your package named would become @somevendor/abc_hello@. Same rule applies for themes. The package names are used to detect what the Composer package contains and where and how the package should be installed. So, be careful to use the correct name.
+
+h4. Making the package to use the installer
+
+p. The installer is the thing that makes this all work; it is what allows us to use Composer for plugins and themes. To make your package to use the installer, include the installer in your composer.json as a dependency and change the type of your package to @textpattern-plugin@, @textpattern-plugin-package@ or @textpattern-admin-theme@ depending on what it contains.
 
 bc. {
     "type": "textpattern-plugin",
     "require": {
-        "rah/textpattern-plugin-installer" : "1.0.0-alpha.3"
+        "rah/textpattern-plugin-installer" : "1.0.0-alpha.5"
     }
 }
 
-h2. Package types
+h4. Package types
 
-p. The installer adds the following types for packages to use:
+p. *textpattern-plugin*
+The package contains "manifest.json":https://github.com/gocom/abc_plugin formatted plugin sources.
 
-* textpattern-plugin: The package contains "manifest.json":https://github.com/gocom/abc_plugin formatted plugin sources.
-* textpattern-plugin-package: The package contains collection of compiled plugin installer packages. All found packages are installed.
-* textpattern-admin-theme: The package is an admin-side theme. Themes are installed to your ./textpattern/theme directory.
+p. *textpattern-plugin-package*
+The package contains collection of compiled plugin installer packages. All found packages are installed.
+
+p. *textpattern-admin-theme*
+The package is an admin-side theme. Themes are installed to your ./textpattern/theme directory.
+
+h3. Requirements and supports
+
+p. As a installer for Textpattern, it requires a configured and functional, existing Textpattern installation. The installer supports Textpattern 4.5.0 and newer.
 
 h2. Changelog
 
