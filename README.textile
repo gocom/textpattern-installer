@@ -28,17 +28,62 @@ p. The installer and Composer give developers an easy way to distribute their pl
 
 p. Let's say you're developing a plugin using a git repository. Normally, releasing this plugin would involve packaging it into a Textpattern's plugin installer, making the package available for download and then making sure your users know about the new version, and download it manually. With Composer, only thing you need is a tag. Create a tag to your repository, and that is it. The new version is out, Composer knows about it and your users will be able to update to it with the same single command. Easy.
 
-h3. How does the installer work?
+h3. How does the installer work internally?
 
-p. This installer works by scanning composer.json's sibling directories for a Textpattern installation. If found, it injects Textpattern to the Composer process. It then collects any plugins and themes from the composer package and installs them to your Textpattern installation, invoking plugin-lifecycle updaters and installers as needed. This process can be compatible with, and used by, any plugin or a theme.
+p. This installer works by scanning your composer.json's sibling directories for a Textpattern installation. If found, it injects Textpattern to the currently running Composer process. It then collects any plugins and themes from composer packages and installs them to your Textpattern installation, invoking plugin-lifecycle updaters and installers as needed. This process can be compatible with, and used by, any plugin or a theme.
 
-h3. Using Composer and the installer for your plugin or theme
+p. The installer doesn't require any extra configuration from the end-user or -developer. All it needs is a functional Textpattern installation, either installed to the same directory as the composer.json file or to its sibling directories. The installer will take care rest, and gives feedback if something goes wrong; the installation isn't configured properly or is outdated.
 
-p. Getting your plugin or theme to the Composer ecosystem is easy for a developer. Expecting that you are already using version control system (like git), this in requires three steps; making sure your source repository structure can be supported by the installer, adding "composer.json":http://getcomposer.org/doc/02-libraries.md to your repository and submitting the repository link to Composer's central repository, "Packagist.org":https://packagist.org/.
+h3. Adopting Composer and the installer for your plugin or a theme
+
+p. Getting your plugin or a theme to the Composer ecosystem is straight forward. With the expectation that you are already using version control system, like "git":http://git-scm.com/, for development, this takes just three steps; making sure your source repository structure can be supported by the installer, adding "composer.json":http://getcomposer.org/doc/02-libraries.md to your repository and submitting the repository link to Composer's central repository, "Packagist.org":https://packagist.org/.
 
 h4. Supported repository formats
 
-p. The installer supports few different type formats. It can use "manifest.json":https://github.com/gocom/abc_plugin formatted plugin source repositories, repositories that contain a collection of compiled plugin installers and "admin-side themes":https://github.com/gocom/abc_theme. Any of these formats can be installed by Composer. If your plugin is using a some other format, adopting one of those is simple. The structures are self-explanatory for any developer by looking at the template repositories.
+p. The installer supports few different formats. It can use "manifest.json":https://github.com/gocom/abc_plugin formatted plugin source repositories, repositories that contain a collection of compiled plugin installers and "admin-side themes":https://github.com/gocom/abc_theme. Any of these formats can be installed by Composer. If your plugin is using a some other format, adopting one of those is simple.
+
+h5. Manifest.json format
+
+p. If you are developing plugins, this would be the format you should be using with the installer. This format uses a JSON formatted meta file to set the properties your plugin uses, and its the format used by "MassPlugCompiler":https://github.com/gocom/MassPlugCompiler. In minimum this kind of plugin could consist of just the manifest.json, but the plugin format also can be used to divide translations, help articles and the source code to their own files, allowing more appropriate source structure than bundling everything to single template file. You can find more information about the plugin template format from MassPlugCompiler's "documentation":https://github.com/gocom/MassPlugCompiler#plugin-template. You can also take look at the example plugin template, "abc_plugin":https://github.com/gocom/abc_plugin.
+
+p. The format's "type":http://getcomposer.org/doc/04-schema.md#type identifier is *textpattern-plugin*.
+
+bc. {
+    "type": "textpattern-plugin",
+    "require": {
+        "rah/textpattern-plugin-installer" : "*"
+    }
+}
+
+p. Any plugin found in the Composer package will be installed as a normal plugin to the Textpattern installation's database. Plugins can be managed and disabled from the graphical Plugin's panel Textpattern offers. This format can support any type of plugin.
+
+h5. Plugin installer package collection format
+
+p. The Composer package would contain one or more pre-compiled plugin installer files. All plugin package found in the Composer package are installed as a normal plugins to the Textpattern installation's database. Plugins can be managed and disabled from the graphical Plugin's panel Textpattern offers. While this format is available, you normally would want to use manifest.json format instead of this. This format is most appropriate for distributing private bundles. For instance if your studio uses single set of plugins on all Textpattern installations, and those plugins are not available as composer packages, you could create a private composer repository that contains all the installers. This would allow you to install plugins with a single command.
+
+p. The format's "type":http://getcomposer.org/doc/04-schema.md#type identifier is *textpattern-plugin-package*.
+
+bc. {
+    "type": "textpattern-plugin-package",
+    "require": {
+        "rah/textpattern-plugin-installer" : "*"
+    }
+}
+
+p. The plugin installer packages are detected by naming convention. Any files that name match the format @{pfx}_{pluginName}_v{version}[_zip].txt.@ will be considered as a plugin installer. @{pfx}@ is the registered "three-letter author prefix":http://www.textpattern.net/wiki/index.php?title=Registered_Textpattern_developer_prefixes, @{pluginName}@ is the name of the plugin, @{version}@ is the version number and @[_zip]@ is an option suffix. Valid plugin installer package names would be, for instance: @abc_plugin_v1.0.5_zip.txt@ and @pfx_hello_world_v0.2.3.txt@.
+
+h5. Admin-theme format
+
+p. The Composer package would contain an admin-side theme. The format follows the same format as all themes. The packages name is expected to the be the name of the theme. If your vendor name is @somevendor@ and the theme is named @greyscale@, your package named would become @somevendor/greyscale@. The package name is used to detect what the Composer package contains and where the theme should be installed. See the theme template, "abc_theme":https://github.com/gocom/abc_theme for a example repository.
+
+p. The format's "type":http://getcomposer.org/doc/04-schema.md#type identifier is *textpattern-admin-theme*.
+
+bc. {
+    "type": "textpattern-admin-theme",
+    "require": {
+        "rah/textpattern-plugin-installer" : "*"
+    }
+}
 
 h4. Adding composer.json
 
