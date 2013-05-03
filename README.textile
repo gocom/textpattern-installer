@@ -22,6 +22,22 @@ bc. $ composer.phar install
 
 p. No instructions, no creating symlinks, no committing dependencies to your repository, no manual updating. Composer installs everything for you.
 
+h2. Getting started
+
+p. Getting things up and running is easy once you have gotten "Composer installed":http://getcomposer.org/doc/00-intro.md, after which, you can freely use Composer to install and update any plugins and themes that are offering Composer packages. Each theme and plugin is just like any other Composer package, and you mange them all the same. Same instructions that are in Composer's "documentation":http://getcomposer.org/doc/ apply for Textpattern plugins and themes.
+
+p. After you have Composer configured and its requirements installed, using the tool is pretty easy. Any themes and plugins you are add to the Textpattern installation that is found in the current working directory you are in. In other words to the installation that is in the same directory as Composer's @composer.json@ file. To get started navigate to the directory you have installed Textpattern:
+
+bc. $ cd ~/domains/example.test/httpdocs
+
+p. Once there, you can start consuming theme and plugin packages with the normal composer commands such as @update@, @install@ and @require@. For instance installing and adding "rah_replace":http://rahforum.biz/plugins/rah_replace to your @composer.json@ doesn't take more than a single command:
+
+bc. $ composer.phar require "rah/rah_replace *"
+
+p. Which would install the most recent version of rah_replace. You can find more information about Composer and its commands by running @help@:
+
+bc. $ composer.phar help
+
 h2. For plugin and theme developers
 
 p. The installer and Composer give developers an easy way to distribute their plugins, libraries and themes. It helps with packaging by removing it entirely, and making managing dependencies simple, both to the package developer and to the end-user. You can deploy and distribute your plugins and other packages directly from their source repositories.
