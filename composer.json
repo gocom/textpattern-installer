@@ -2,7 +2,7 @@
     "name": "textpattern/installer",
     "type": "composer-installer",
     "description": "Textpattern plugin and theme installer",
-    "keywords": ["textpattern", "plugin", "theme", "txp", "custom", "installer"],
+    "keywords": ["textpattern", "plugin", "theme", "txp", "installer"],
     "homepage": "https://github.com/gocom/textpattern-installer",
     "license": "GPL-2.0",
     "authors": [
