@@ -22,7 +22,7 @@
  * <http://www.gnu.org/licenses/>.
  */
 
-namespace Rah\TextpatternPluginInstaller\Textpattern;
+namespace Textpattern\Composer\Installer\Textpattern;
 
 /**
  * Finds closest Textpattern installation location.

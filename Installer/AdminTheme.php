@@ -22,11 +22,11 @@
  * <http://www.gnu.org/licenses/>.
  */
 
-namespace Rah\TextpatternPluginInstaller\Installer;
+namespace Textpattern\Composer\Installer\Installer;
 use Composer\Package\PackageInterface;
 use Composer\Repository\InstalledRepositoryInterface;
 use Composer\Installer\LibraryInstaller;
-use Rah\TextpatternPluginInstaller\Textpattern\Find as Textpattern;
+use Textpattern\Composer\Installer\Textpattern\Find as Textpattern;
 
 /**
  * Installer for the admin-side Textpattern themes

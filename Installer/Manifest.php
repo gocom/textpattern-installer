@@ -22,7 +22,7 @@
  * <http://www.gnu.org/licenses/>.
  */
 
-namespace Rah\TextpatternPluginInstaller\Installer;
+namespace Textpattern\Composer\Installer\Installer;
 
 /**
  * Installer for the manifest format.

@@ -22,8 +22,8 @@
  * <http://www.gnu.org/licenses/>.
  */
 
-namespace Rah\TextpatternPluginInstaller\Plugin;
-use Rah\TextpatternPluginInstaller\Textpattern\Inject as Textpattern;
+namespace Textpattern\Composer\Installer\Plugin;
+use Textpattern\Composer\Installer\Textpattern\Inject as Textpattern;
 
 /**
  * Processes packaged installer collections.

@@ -22,8 +22,8 @@
  * <http://www.gnu.org/licenses/>.
  */
 
-namespace Rah\TextpatternPluginInstaller\Textpattern;
-use Rah\TextpatternPluginInstaller\Textpattern\Find as Textpattern;
+namespace Textpattern\Composer\Installer\Textpattern;
+use Textpattern\Composer\Installer\Textpattern\Find as Textpattern;
 
 /**
  * Injects Textpattern sources to the process.
