@@ -103,8 +103,8 @@ abstract class Base extends LibraryInstaller
     public function uninstall(InstalledRepositoryInterface $repo, PackageInterface $package)
     {
         new Textpattern();
-        parent::uninstall($repo, $package);
         $plugin = new $this->textpatternPackager($this->getInstallPath($package));
         $plugin->uninstall();
+        parent::uninstall($repo, $package);
     }
 }
