@@ -30,11 +30,15 @@ p. After you have Composer configured and its requirements installed, using the 
 
 bc. $ cd ~/domains/example.test/httpdocs
 
-p. Once there, you can start consuming theme and plugin packages with the normal composer commands such as @update@, @install@ and @require@. For instance installing and adding "rah_replace":http://rahforum.biz/plugins/rah_replace to your @composer.json@ doesn't take more than a single command:
+p. Once there, you can start consuming theme and plugin packages with the normal composer commands such as @update@, @install@ and @require@. You should start by locking in your installed Textpattern version.
+
+bc. $ composer.phar require "textpattern/lock 4.5.4"
+
+p. Where @4.5.4@ is the Textpattern version you have. This makes sure the packages you install are compatible with the Textpattern version you have. Now you are free to go and get plugins and themes. For instance installing "rah_replace":http://rahforum.biz/plugins/rah_replace doesn't take more than a command.
 
 bc. $ composer.phar require "rah/rah_replace *"
 
-p. Which would install the most recent version of rah_replace. You can find more information about Composer and its commands by running @help@:
+p. Which would install the most recent version of rah_replace that is compatible with your Textpattern version. You can find more information about Composer and its commands by running @help@:
 
 bc. $ composer.phar help
 
