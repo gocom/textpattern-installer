@@ -2,7 +2,7 @@
 
 /*
  * Textpattern Plugin Installer for Composer
- * https://github.com/gocom/textpattern-plugin-installer
+ * https://github.com/gocom/textpattern-installer
  *
  * Copyright (C) 2013 Jukka Svahn
  *
