@@ -38,5 +38,5 @@ namespace Textpattern\Composer\Installer\Installer;
 class Package extends Base
 {
     protected $textpatternType = 'textpattern-plugin-package';
-    protected $textpatternPackager = 'Rah\TextpatternPluginInstaller\Plugin\Package';
+    protected $textpatternPackager = 'Textpattern\Composer\Installer\Plugin\Package';
 }

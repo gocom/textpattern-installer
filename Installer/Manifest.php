@@ -31,5 +31,5 @@ namespace Textpattern\Composer\Installer\Installer;
 class Manifest extends Base
 {
     protected $textpatternType = 'textpattern-plugin';
-    protected $textpatternPackager = 'Rah\TextpatternPluginInstaller\Plugin\Manifest';
+    protected $textpatternPackager = 'Textpattern\Composer\Installer\Plugin\Manifest';
 }
