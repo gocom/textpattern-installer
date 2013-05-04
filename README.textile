@@ -79,7 +79,7 @@ p. The format's "type":http://getcomposer.org/doc/04-schema.md#type identifier i
 bc. {
     "type": "textpattern-plugin",
     "require": {
-        "rah/textpattern-plugin-installer" : "*"
+        "textpattern/installer" : "*"
     }
 }
 
@@ -94,7 +94,7 @@ p. The format's "type":http://getcomposer.org/doc/04-schema.md#type identifier i
 bc. {
     "type": "textpattern-plugin-package",
     "require": {
-        "rah/textpattern-plugin-installer" : "*"
+        "textpattern/installer" : "*"
     }
 }
 
@@ -109,7 +109,7 @@ p. The format's "type":http://getcomposer.org/doc/04-schema.md#type identifier i
 bc. {
     "type": "textpattern-admin-theme",
     "require": {
-        "rah/textpattern-plugin-installer" : "*"
+        "textpattern/installer" : "*"
     }
 }
 
@@ -128,7 +128,7 @@ p. The installer is the thing that makes this all work; it is what allows us to 
 bc. {
     "type": "textpattern-plugin",
     "require": {
-        "rah/textpattern-plugin-installer" : "1.0.0-alpha.5"
+        "textpattern/installer" : "1.0.0-alpha.5"
     }
 }
 
