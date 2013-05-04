@@ -142,6 +142,12 @@ p. As a installer for Textpattern, it requires a configured and functional, exis
 
 h2. Changelog
 
+h3. 1.0.0-alpha.5 - 2013/05/04
+
+* Fixed: Plugin installer. Now correctly uninstalls plugin and then deletes files, instead of trying to do it the other way around.
+* Added: Textpattern version constraint. Makes sure the installer is only used on supported Textpattern versions.
+* Changed: Renamed the Composer package from rah/textpattern-plugin-installer to "textpattern/installer":https://packagist.org/packages/textpattern/installer.
+
 h3. 1.0.0-alpha.4 - 2013/05/01
 
 * Added: new type "textpattern-admin-theme". Supports admin-side themes.
