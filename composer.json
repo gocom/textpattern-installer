@@ -3,7 +3,7 @@
     "type": "composer-installer",
     "description": "Textpattern plugin installer",
     "keywords": ["textpattern", "plugin", "txp", "installer"],
-    "homepage": "https://github.com/gocom/textpattern-plugin-installer",
+    "homepage": "https://github.com/gocom/textpattern-installer",
     "license": "GPL-2.0",
     "authors": [
     	{
@@ -13,8 +13,8 @@
     	}
     ],
     "support": {
-    	"issues": "https://github.com/gocom/textpattern-plugin-installer/issues",
-    	"source": "https://github.com/gocom/textpattern-plugin-installer"
+    	"issues": "https://github.com/gocom/textpattern-installer/issues",
+    	"source": "https://github.com/gocom/textpattern-installer"
     },
     "autoload": {
         "psr-0": {"Rah\\TextpatternPluginInstaller\\": ""}
