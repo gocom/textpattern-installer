@@ -57,6 +57,8 @@ class Inject
 
     /**
      * Original admin-side plugin status.
+     *
+     * @var int
      */
 
     static public $admin_side_plugins = 1;
