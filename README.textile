@@ -1,5 +1,7 @@
 h1. Textpattern Installer for Composer
 
+p. Install plugins and themes using Composer
+
 p. "Packagist":https://packagist.org/packages/textpattern/installer | "Issues":https://github.com/gocom/textpattern-installer/issues
 
 p. ...or what may hopefully end up being an installer for Composer. Still work in progress. Currently in alpha.
