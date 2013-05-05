@@ -16,7 +16,7 @@
     	"issues": "https://github.com/gocom/textpattern-installer/issues",
     	"source": "https://github.com/gocom/textpattern-installer"
     },
-    "requires": {
+    "require": {
         "textpattern/lock": ">=4.5.0"
     },
     "autoload": {
