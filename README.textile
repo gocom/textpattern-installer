@@ -26,19 +26,19 @@ bc. $ composer.phar install
 
 p. No instructions, no creating symlinks, no committing dependencies to your repository, no manual updating. Composer installs everything for you.
 
-h2. Getting started
+h2. Quick start for end-users
 
-p. Getting things up and running is easy once you have gotten "Composer installed":http://getcomposer.org/doc/00-intro.md, after which, you can freely use Composer to install and update any plugins and themes that are offering Composer packages. Each theme and plugin is just like any other Composer package, and you mange them all the same. Same instructions that are in Composer's "documentation":http://getcomposer.org/doc/ apply for Textpattern plugins and themes.
+p. Getting things up and running is easy once you have gotten "Composer installed":http://getcomposer.org/doc/00-intro.md. Using Composer and its packages is very easy once you get hang of it, and it will save tons your precious time. Each theme and plugin is just like any other Composer package, and you manage them all the same. Same instructions outlined in Composer's "documentation":http://getcomposer.org/doc/ apply for Textpattern plugins and themes.
 
-p. After you have Composer configured and its requirements installed, using the tool is pretty easy. Any themes and plugins you are add to the Textpattern installation that is found in the current working directory you are in. In other words to the installation that is in the same directory as Composer's @composer.json@ file. To get started navigate to the directory you have installed Textpattern:
+p. Any theme and plugin packages you get through Composer are add to the Textpattern installation that is found in the current working directory you are in. In other words to the installation that is in the same directory as Composer's @composer.json@ file. To first get started with Composer, navigate to the directory you have installed Textpattern:
 
 bc. $ cd ~/domains/example.test/httpdocs
 
-p. Once there, you can start consuming theme and plugin packages with the normal composer commands such as @update@, @install@ and @require@. You should start by locking in your installed Textpattern version.
+p. Once there, you can start consuming theme and plugin packages with the normal composer commands such as @update@, @install@ and @require@. The first thing you should do with any Textpattern installation, is to lock your installed Textpattern version:
 
 bc. $ composer.phar require "textpattern/lock 4.5.4"
 
-p. Where @4.5.4@ is the Textpattern version you have. This makes sure the packages you install are compatible with the Textpattern version you have. Now you are free to go and get plugins and themes. For instance installing "rah_replace":http://rahforum.biz/plugins/rah_replace doesn't take more than a command.
+p. Where @4.5.4@ is the Textpattern version you have. This will tell Composer and your consumed packages what version of Textpattern you have. This makes sure the packages you install are compatible with the Textpattern version. You are now set to fetch your first plugin or a theme. Try "rah_replace":http://rahforum.biz/plugins/rah_replace for one. Installing it doesn't take more than a single command:
 
 bc. $ composer.phar require "rah/rah_replace *"
 
@@ -47,6 +47,11 @@ p. Which would install the most recent version of rah_replace that is compatible
 bc. $ composer.phar help
 
 h2. For plugin and theme developers
+
+bc. {
+    "type": "textpattern-plugin",
+    "require": {"textpattern/installer" : "*"}
+}
 
 p. The installer and Composer give developers an easy way to distribute their plugins, libraries and themes. It helps with packaging by removing it entirely, and making managing dependencies simple, both to the package developer and to the end-user. You can deploy and distribute your plugins and other packages directly from their source repositories.
 
