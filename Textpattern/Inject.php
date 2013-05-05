@@ -72,23 +72,47 @@ if (!Inject::$ready && new Textpattern() && Textpattern::$path)
     define('txpinterface', 'admin');
     define('txpath', Textpattern::$path);
 
-    require_once './config.php';
-    require_once './lib/constants.php';
-    require_once './lib/txplib_misc.php';
-    require_once './lib/txplib_db.php';
+    foreach (
+        array(
+            './config.php',
+            './lib/constants.php',
+            './lib/txplib_misc.php',
+            './lib/txplib_db.php',
+        ) as $file
+    )
+    {
+        if (file_exists($file))
+        {
+            require_once $file;
+        }
+    }
 
     Inject::$plugins = get_pref('use_plugins', 1, true);
     Inject::$admin_side_plugins = get_pref('admin_side_plugins', 1, true);
     set_pref('use_plugins', 0);
     set_pref('admin_side_plugins', 0);
 
-    require_once './publish.php';
-    require_once './lib/txplib_head.php';
-    require_once './lib/txplib_theme.php';
-    require_once './lib/txplib_validator.php';
+    foreach (
+        array(
+            './publish.php',
+            './lib/txplib_head.php',
+            './lib/txplib_theme.php',
+            './lib/txplib_validator.php',
+        ) as $file
+    )
+    {
+        if (file_exists($file))
+        {
+            require_once $file;
+        }
+    }
 
     $theme = \theme::init();
-    require_once './include/txp_plugin.php';
+
+    if (file_exists('./include/txp_plugin.php'))
+    {
+        require_once './include/txp_plugin.php';
+    }
 
     set_pref('admin_side_plugins', Inject::$admin_side_plugins);
     set_pref('use_plugins', Inject::$plugins);
