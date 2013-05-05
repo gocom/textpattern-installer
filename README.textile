@@ -151,6 +151,10 @@ p. As a installer for Textpattern, it requires a configured and functional, exis
 
 h2. Changelog
 
+h3. 1.0.0-alpha.6 - 2013/05/05
+
+* Fixed: Package collection installer.
+
 h3. 1.0.0-alpha.5 - 2013/05/04
 
 * Fixed: Plugin uninstaller. Now correctly uninstalls plugin and then deletes files, instead of trying to do it the other way around.
