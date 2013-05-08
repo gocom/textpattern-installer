@@ -2,7 +2,7 @@ h1. Textpattern Installer for Composer
 
 p. Install plugins and themes using Composer
 
-p. "Packagist":https://packagist.org/packages/textpattern/installer | "Issues":https://github.com/gocom/textpattern-installer/issues
+p. "Packagist":https://packagist.org/packages/textpattern/installer | "Issues":https://github.com/gocom/textpattern-installer/issues | "Textpattern package directory":https://packagist.org/search/?q=textpattern
 
 p. Makes managing "Textpattern CMS'":http://textpattern.com plugins and themes using "Composer":http://getcomposer.org/ dependency manager reality. Install, update and manage plugins, themes and their dependencies through a common, painless interface. Composer allows you to declare assets, plugins, themes and libraries your Textpattern project depends on and it will install them for you. No downloading, no browsing websites, no hours going through your plugin collection or uploading plugins one by one. Just a single command and a second, that is all it takes once you have adopted Composer.
 
