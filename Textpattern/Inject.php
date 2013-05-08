@@ -120,8 +120,8 @@ if (!Inject::$ready && new Textpattern() && Textpattern::$path)
 
     set_error_handler(array(new Error, 'clean'));
     $theme = \theme::init();
-	$event = '';
-	$step = '';
+    $event = '';
+    $step = '';
 
     if (file_exists('./include/txp_plugin.php'))
     {
