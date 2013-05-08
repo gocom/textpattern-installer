@@ -36,6 +36,5 @@ class ErrorHandler
 
     public function clean()
     {
-        return;
     }
 }
