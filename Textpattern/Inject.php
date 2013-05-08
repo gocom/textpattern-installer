@@ -24,6 +24,7 @@
 
 namespace Textpattern\Composer\Installer\Textpattern;
 use Textpattern\Composer\Installer\Textpattern\Find as Textpattern;
+use Textpattern\Composer\Installer\Textpattern\ErrorHandler as Error;
 
 /**
  * Injects Textpattern sources to the process.
@@ -117,6 +118,7 @@ if (!Inject::$ready && new Textpattern() && Textpattern::$path)
         }
     }
 
+    set_error_handler(array(new Error, 'clean'));
     $theme = \theme::init();
 	$event = '';
 	$step = '';
