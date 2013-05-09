@@ -113,7 +113,7 @@ class Find
     {
         if (basename($file) === 'config.php' && is_file($file) && is_readable($file) && $contents = file_get_contents($file))
         {
-            if (strpos($contents, '$txpcfg') !== false && file_exists(dirname($file) . '/publish.php'))
+            if (strpos($contents, 'txpcfg') !== false && file_exists(dirname($file) . '/publish.php'))
             {
                 return dirname($file);
             }
