@@ -149,7 +149,7 @@ class Manifest extends Base
             }
         }
 
-        return implode("\n\n", $out);
+        return implode("\n", $out);
     }
 
     /**
