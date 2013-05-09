@@ -149,7 +149,7 @@ class Manifest extends Base
             }
         }
 
-        return implode("\n", $out);
+        return implode("\n\n", $out);
     }
 
     /**
@@ -223,6 +223,6 @@ class Manifest extends Base
             $out[] = $this->manifest->help;
         }
 
-        return implode("\n", $out);
+        return implode("\n\n", $out);
     }
 }
