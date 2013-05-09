@@ -47,7 +47,7 @@ abstract class Base
     protected $plugin = array();
 
     /**
-     * Stores an array of oackaged plugin installers.
+     * Stores an array of packaged plugin installers.
      *
      * @var array
      */

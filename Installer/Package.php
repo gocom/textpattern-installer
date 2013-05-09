@@ -31,7 +31,7 @@ namespace Textpattern\Composer\Installer\Installer;
  * Installers are detected by the standardized naming convention:
  * {pfx}_{pluginName}_v{version}[_zip}.txt.
  *
- * Any file that matches the pattern will be consired as a plugin
+ * Any file that matches the pattern will be considered as a plugin
  * package.
  */
 
