@@ -138,7 +138,11 @@ class Manifest extends Base
         }
         else
         {
-            $files = (array) glob($this->dir . '/*.php');
+            if (($cwd = getcwd()) !== false && chdir($this->dir))
+            {
+                $files = (array) glob('*.php');
+                chdir($cwd);
+            }
         }
 
         foreach ($files as $path)
