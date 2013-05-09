@@ -54,18 +54,44 @@ class Manifest extends Base
 
             foreach ($iterator as $file)
             {
-                if (basename($file) === 'manifest.json' && is_file($file) && is_readable($file) && $contents = file_get_contents($file))
+                if ($this->isManifest($file))
                 {
-                    if (($this->manifest = @json_decode($contents)) && isset($this->manifest->name) && $this->manifest->name === basename(dirname($file)))
-                    {
-                        $this->dir = dirname($file);
-                        $this->import();
-                    }
+                    $this->dir = dirname($file);
+                    $this->import();
                 }
             }
         }
 
         return !empty($this->plugin);
+    }
+
+    /**
+     * Whether a file is a valid plugin manifest.
+     *
+     * This function makes sure the file contains JSON, the name property
+     * follows plugin naming convention and the parent directory is the same
+     * as the name property.
+     *
+     * A valid plugin name follows the pattern {pfx}_{pluginName}, where the
+     * {pfx} is the plugin author prefix and the {pluginName} is the name of
+     * the plugin consisting of up to 64 ASCII letter and numbers.
+     *
+     * @return bool
+     */
+
+    protected function isManifest($file)
+    {
+        if (basename($file) === 'manifest.json' && is_file($file) && is_readable($file) && $contents = file_get_contents($file))
+        {
+            $this->manifest = @json_decode($contents);
+
+            if ($this->manifest && isset($this->manifest->name) && is_string($this->manifest->name))
+            {
+                return $this->manifest->name === basename(dirname($file)) && preg_match('/^[a-z0-9]{3}_[a-z0-9\_]{0,64}$/i', $this->manifest->name);
+            }
+        }
+
+        return false;
     }
 
     /**
