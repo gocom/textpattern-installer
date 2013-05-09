@@ -78,6 +78,11 @@ class Find
  
     public function find($directory)
     {
+        if (($path = $this->isConfig('./textpattern/config.php')) !== false)
+        {
+            return realpath($path);
+        }
+
         if (!file_exists($directory) || !is_dir($directory) || !is_readable($directory))
         {
             return false;
@@ -88,12 +93,29 @@ class Find
 
         foreach ($iterator as $file)
         {
-            if (basename($file) === 'config.php' && is_file($file) && is_readable($file) && $contents = file_get_contents($file))
+            if (($path = $this->isConfig($file)) !== false)
             {
-                if (strpos($contents, '$txpcfg') !== false && file_exists(dirname($file) . '/publish.php'))
-                {
-                    return dirname($file);
-                }
+                return $path;
+            }
+        }
+
+        return false;
+    }
+
+    /**
+     * Whether the file is a config.php.
+     *
+     * @param  string      $file The filename
+     * @return string|bool Path to the directory, or FALSE
+     */
+
+    protected function isConfig($file)
+    {
+        if (basename($file) === 'config.php' && is_file($file) && is_readable($file) && $contents = file_get_contents($file))
+        {
+            if (strpos($contents, '$txpcfg') !== false && file_exists(dirname($file) . '/publish.php'))
+            {
+                return dirname($file);
             }
         }
 
