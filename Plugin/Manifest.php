@@ -228,7 +228,7 @@ class Manifest extends Base
         }
         else if (isset($this->manifest->help))
         {
-            $out[] = $this->manifest->help;
+            $out[] = (string) $this->manifest->help;
         }
 
         return implode("\n\n", $out);
