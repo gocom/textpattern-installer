@@ -191,7 +191,7 @@ class Manifest extends Base
 
             $file = file_get_contents($file);
 
-            if (!preg_match('/^#language|\n#language\s/', $file))
+            if (!preg_match('/^#@language|\n#@language\s/', $file))
             {
                 array_unshift($out, $file);
                 continue;
