@@ -141,7 +141,6 @@ class Manifest extends Base
             if (($cwd = getcwd()) !== false && chdir($this->dir))
             {
                 $files = (array) glob('*.php');
-                chdir($cwd);
             }
         }
 
@@ -151,6 +150,11 @@ class Manifest extends Base
             {
                 $out[] = trim(preg_replace('/^<\?(php)?|\?>$/', '', $contents), "\r\n");
             }
+        }
+
+        if (isset($cwd) && $cwd !== false)
+        {
+            chdir($cwd);
         }
 
         return implode("\n", $out);
