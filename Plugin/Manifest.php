@@ -109,12 +109,12 @@ class Manifest extends Base
         $plugin->type = $this->manifest->type;
         $plugin->order = (int) $this->manifest->order;
         $plugin->allow_html_help = 0;
-        $plugin->textpack = $this->textpack();
         $plugin->code = $this->code();
         $plugin->md5 = md5($plugin->code);
         $plugin->flags = (int) $this->manifest->flags;
         $plugin->help = '';
         $plugin->help_raw = $this->help();
+        $plugin->textpack = $this->textpack();
         $this->plugin[] = $plugin;
     }
 
