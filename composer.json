@@ -26,7 +26,8 @@
         "class": [
             "Textpattern\\Composer\\Installer\\Installer\\Manifest",
             "Textpattern\\Composer\\Installer\\Installer\\Package",
-            "Textpattern\\Composer\\Installer\\Installer\\AdminTheme"
+            "Textpattern\\Composer\\Installer\\Installer\\AdminTheme",
+            "Textpattern\\Composer\\Installer\\Installer\\PublicTheme"
         ]
     }
 }
