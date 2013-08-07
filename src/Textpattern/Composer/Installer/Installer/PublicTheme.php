@@ -29,7 +29,7 @@ use Composer\Installer\LibraryInstaller;
 use Textpattern\Composer\Installer\Textpattern\Find as Textpattern;
 
 /**
- * Installer for the admin-side Textpattern themes
+ * Installer for the public-side Textpattern themes.
  */
 
 class PublicTheme extends LibraryInstaller
