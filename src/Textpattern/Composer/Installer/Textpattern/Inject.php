@@ -78,9 +78,15 @@ if (!Inject::$ready && new Textpattern() && Textpattern::$path)
     define('txpinterface', 'admin');
     define('txpath', Textpattern::$path);
 
+    if (file_exists('./config.php'))
+    {
+        require_once './config.php';
+    }
+
+    new Validate();
+
     foreach (
         array(
-            './config.php',
             './lib/constants.php',
             './lib/txplib_misc.php',
             './lib/txplib_db.php',
