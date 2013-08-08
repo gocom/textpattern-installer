@@ -134,12 +134,12 @@ class Find
     {
         $current = realpath('./');
 
-        if (strpos(self::$path.'/', $current.'/') === 0)
+        if ($current !== false && strpos(self::$path.'/', $current.'/') === 0)
         {
             return substr(self::$path, strlen($current) + 1);
         }
 
-        return false;
+        throw new \InvalidArgumentException('Unable to resolve relative path to Textpattern installation location from the current working directory.');
     }
 
     /**
