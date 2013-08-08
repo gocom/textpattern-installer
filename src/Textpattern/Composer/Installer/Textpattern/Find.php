@@ -127,7 +127,7 @@ class Find
      *
      * The path is relative to the current working directory.
      *
-     * @return string|bool
+     * @return string The path
      */
 
     public function getRelativePath()
