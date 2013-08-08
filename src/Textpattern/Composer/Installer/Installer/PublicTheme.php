@@ -35,7 +35,7 @@ use Textpattern\Composer\Installer\Textpattern\Find as Textpattern;
 class PublicTheme extends LibraryInstaller
 {
     /**
-     * Supports 'textpattern-public-side' packages.
+     * Supports 'textpattern-public-theme' packages.
      *
      * @param  string $packageType
      * @return bool
@@ -55,7 +55,7 @@ class PublicTheme extends LibraryInstaller
 
     public function getInstallPath(PackageInterface $package)
     {
-        $path = (string) new Textpattern();
-        return 'theme/' . basename($package->getPrettyName());
+        $textpattern = new Textpattern();
+        return dirname($textpattern->getRelativePath()) . '/theme/' . basename($package->getPrettyName());
     }
 }

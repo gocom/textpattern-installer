@@ -123,6 +123,26 @@ class Find
     }
 
     /**
+     * Gets relative path to the Textpattern installation.
+     *
+     * The path is relative to the current working directory.
+     *
+     * @return string|bool
+     */
+
+    public function getRelativePath()
+    {
+        $current = realpath('./');
+
+        if (strpos(self::$path.'/', $current.'/') === 0)
+        {
+            return substr(self::$path, strlen($current) + 1);
+        }
+
+        return false;
+    }
+
+    /**
      * Gives out the path.
      *
      * @return string The path or an empty string

@@ -55,7 +55,7 @@ class AdminTheme extends LibraryInstaller
 
     public function getInstallPath(PackageInterface $package)
     {
-        $path = (string) new Textpattern();
-        return basename($path) . '/theme/' . basename($package->getPrettyName());
+        $textpattern = new Textpattern();
+        return $textpattern->getRelativePath() . '/theme/' . basename($package->getPrettyName());
     }
 }
