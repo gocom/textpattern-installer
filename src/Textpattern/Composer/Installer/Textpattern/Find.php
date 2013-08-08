@@ -48,6 +48,8 @@ class Find
 
     /**
      * Constructor.
+     *
+     * @throws \InvalidArgumentException
      */
 
     public function __construct()
@@ -128,6 +130,7 @@ class Find
      * The path is relative to the current working directory.
      *
      * @return string The path
+     * @throws \InvalidArgumentException
      */
 
     public function getRelativePath()
