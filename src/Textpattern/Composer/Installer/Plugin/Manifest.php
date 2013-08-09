@@ -213,6 +213,7 @@ class Rah_Textpattern_Composer_Installer_Autoloader_{$md5}()
 
     public funcion __construct()
     {
+        \$this->filesystem = json_decode(\$this->filesystem, true);
         spl_autoload_register(array(\$this, 'autoload'));
     }
 
