@@ -87,7 +87,7 @@ class Manifest extends Base
 
             if ($this->manifest && isset($this->manifest->name) && is_string($this->manifest->name))
             {
-                return $this->manifest->name === basename(dirname($file)) && preg_match('/^[a-z0-9]{3}_[a-z0-9\_]{0,64}$/i', $this->manifest->name);
+                return $this->manifest->name === basename(dirname($file)) && preg_match('/^[a-z][a-z0-9]{2}_[a-z0-9\_]{1,64}$/i', $this->manifest->name);
             }
         }
 
