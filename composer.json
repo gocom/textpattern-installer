@@ -17,7 +17,7 @@
     	"source": "https://github.com/gocom/textpattern-installer"
     },
     "require": {
-        "textpattern/lock": ">=4.5.0"
+        "textpattern/lock": ">=4.4.1"
     },
     "autoload": {
         "psr-0": {"Textpattern\\Composer\\Installer\\": "src/"}
