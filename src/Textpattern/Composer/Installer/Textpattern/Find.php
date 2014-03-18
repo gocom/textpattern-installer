@@ -54,18 +54,14 @@ class Find
 
     public function __construct()
     {
-        if (self::$path === false)
-        {
-            foreach ($this->candidates as $candidate)
-            {
-                if (self::$path = $this->find($candidate))
-                {
+        if (self::$path === false) {
+            foreach ($this->candidates as $candidate) {
+                if (self::$path = $this->find($candidate)) {
                     break;
                 }
             }
 
-            if (!self::$path)
-            {
+            if (!self::$path) {
                 throw new \InvalidArgumentException('Textpattern installation location was not found.');
             }
         }
@@ -80,23 +76,19 @@ class Find
  
     public function find($directory)
     {
-        if (($path = $this->isConfig('./textpattern/config.php')) !== false)
-        {
+        if (($path = $this->isConfig('./textpattern/config.php')) !== false) {
             return realpath($path);
         }
 
-        if (!file_exists($directory) || !is_dir($directory) || !is_readable($directory))
-        {
+        if (!file_exists($directory) || !is_dir($directory) || !is_readable($directory)) {
             return false;
         }
 
         $iterator = new \RecursiveDirectoryIterator(realpath($directory));
         $iterator = new \RecursiveIteratorIterator($iterator);
 
-        foreach ($iterator as $file)
-        {
-            if (($path = $this->isConfig($file)) !== false)
-            {
+        foreach ($iterator as $file) {
+            if (($path = $this->isConfig($file)) !== false) {
                 return $path;
             }
         }
@@ -113,10 +105,8 @@ class Find
 
     protected function isConfig($file)
     {
-        if (basename($file) === 'config.php' && is_file($file) && is_readable($file) && $contents = file_get_contents($file))
-        {
-            if (strpos($contents, 'txpcfg') !== false && file_exists(dirname($file) . '/publish.php'))
-            {
+        if (basename($file) === 'config.php' && is_file($file) && is_readable($file) && $contents = file_get_contents($file)) {
+            if (strpos($contents, 'txpcfg') !== false && file_exists(dirname($file) . '/publish.php')) {
                 return dirname($file);
             }
         }
@@ -137,8 +127,7 @@ class Find
     {
         $current = realpath('./');
 
-        if ($current !== false && strpos(self::$path.'/', $current.'/') === 0)
-        {
+        if ($current !== false && strpos(self::$path.'/', $current.'/') === 0) {
             return rtrim('./' . substr(self::$path, strlen($current) + 1), '\\/');
         }
 

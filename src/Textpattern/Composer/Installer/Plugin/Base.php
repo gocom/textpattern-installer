@@ -62,12 +62,9 @@ abstract class Base
     {
         $this->dir = $directory;
 
-        if ($this->find($directory))
-        {
+        if ($this->find($directory)) {
             $this->package();
-        }
-        else
-        {
+        } else {
             throw new \InvalidArgumentException('No plugins found in the package.');
         }
     }
@@ -81,8 +78,7 @@ abstract class Base
 
     protected function find($directory)
     {
-        if (!file_exists($directory) || !is_dir($directory) || !is_readable($directory))
-        {
+        if (!file_exists($directory) || !is_dir($directory) || !is_readable($directory)) {
             return false;
         }
 
@@ -96,8 +92,7 @@ abstract class Base
 
     protected function package()
     {
-        foreach ((array) $this->plugin as $plugin)
-        {
+        foreach ((array) $this->plugin as $plugin) {
             $this->package[] = base64_encode(gzencode(serialize((array) $plugin)));
         }
     }
@@ -110,8 +105,7 @@ abstract class Base
     {
         $this->update();
 
-        foreach ((array) $this->plugin as $plugin)
-        {
+        foreach ((array) $this->plugin as $plugin) {
             safe_update('txp_plugin', 'status = 1', "name = '".doSlash($plugin->name)."'");
         }
     }
@@ -122,8 +116,7 @@ abstract class Base
 
     public function update()
     {
-        foreach ((array) $this->package as $package)
-        {
+        foreach ((array) $this->package as $package) {
             $_POST['plugin64'] = $package;
             ob_start();
             plugin_install();
@@ -139,8 +132,7 @@ abstract class Base
     {
         $_POST['selected'] = array();
 
-        foreach ((array) $this->plugin as $plugin)
-        {
+        foreach ((array) $this->plugin as $plugin) {
             $_POST['selected'][] = $plugin->name;
         }
 
@@ -159,13 +151,11 @@ abstract class Base
 
     protected function path($path)
     {
-        if (strpos($path, './') === 0)
-        {
+        if (strpos($path, './') === 0) {
             return $this->dir . '/' . substr($path, 2);
         }
 
-        if (strpos($path, '../') === 0)
-        {
+        if (strpos($path, '../') === 0) {
             return dirname($this->dir) . '/' . substr($path, 3);
         }
 

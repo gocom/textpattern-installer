@@ -40,12 +40,9 @@ class Package extends Base
 
     protected function find($directory)
     {
-        if ($iterator = parent::find($directory))
-        {
-            foreach ($iterator as $file)
-            {
-                if (preg_match('/^[a-z0-9]{3}_[a-z0-9\_]{0,64}_v[a-z0-9\-\.]+(_zip)?\.txt$/i', basename($file)) && is_file($file) && is_readable($file) && $contents = file_get_contents($file))
-                {
+        if ($iterator = parent::find($directory)) {
+            foreach ($iterator as $file) {
+                if (preg_match('/^[a-z0-9]{3}_[a-z0-9\_]{0,64}_v[a-z0-9\-\.]+(_zip)?\.txt$/i', basename($file)) && is_file($file) && is_readable($file) && $contents = file_get_contents($file)) {
                     $plugin = (object) null;
                     $plugin->name = implode('_v', array_slice(explode('_v', basename($file, '.txt')), 0, -1));
                     $this->plugin[] = $plugin;

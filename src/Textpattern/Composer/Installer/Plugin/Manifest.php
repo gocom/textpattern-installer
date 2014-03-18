@@ -48,14 +48,11 @@ class Manifest extends Base
 
     protected function find($directory)
     {
-        if ($iterator = parent::find($directory))
-        {
+        if ($iterator = parent::find($directory)) {
             new Textpattern();
 
-            foreach ($iterator as $file)
-            {
-                if ($this->isManifest($file))
-                {
+            foreach ($iterator as $file) {
+                if ($this->isManifest($file)) {
                     $this->dir = dirname($file);
                     $this->import();
                 }
@@ -81,12 +78,10 @@ class Manifest extends Base
 
     protected function isManifest($file)
     {
-        if (basename($file) === 'manifest.json' && is_file($file) && is_readable($file) && $contents = file_get_contents($file))
-        {
+        if (basename($file) === 'manifest.json' && is_file($file) && is_readable($file) && $contents = file_get_contents($file)) {
             $this->manifest = @json_decode($contents);
 
-            if ($this->manifest && isset($this->manifest->name) && is_string($this->manifest->name))
-            {
+            if ($this->manifest && isset($this->manifest->name) && is_string($this->manifest->name)) {
                 return $this->manifest->name === basename(dirname($file)) && preg_match('/^[a-z][a-z0-9]{2}_[a-z0-9\_]{1,64}$/i', $this->manifest->name);
             }
         }
@@ -132,28 +127,21 @@ class Manifest extends Base
     {
         $files = $out = array();
 
-        if (isset($this->manifest->code->file))
-        {
+        if (isset($this->manifest->code->file)) {
             $files = array_map(array($this, 'path'), (array) $this->manifest->code->file);
-        }
-        else
-        {
-            if (($cwd = getcwd()) !== false && chdir($this->dir))
-            {
+        } else {
+            if (($cwd = getcwd()) !== false && chdir($this->dir)) {
                 $files = (array) glob('*.php');
             }
         }
 
-        foreach ($files as $path)
-        {
-            if (file_exists($path) && is_file($path) && is_readable($path) && $contents = file_get_contents($path))
-            {
+        foreach ($files as $path) {
+            if (file_exists($path) && is_file($path) && is_readable($path) && $contents = file_get_contents($path)) {
                 $out[] = trim(preg_replace('/^<\?(php)?|\?>$/', '', $contents), "\r\n");
             }
         }
 
-        if (isset($cwd) && $cwd !== false)
-        {
+        if (isset($cwd) && $cwd !== false) {
             chdir($cwd);
         }
 
@@ -170,29 +158,24 @@ class Manifest extends Base
     {
         $textpacks = $this->dir . '/textpacks';
 
-        if (!file_exists($textpacks) || !is_dir($textpacks) || !is_readable($textpacks))
-        {
+        if (!file_exists($textpacks) || !is_dir($textpacks) || !is_readable($textpacks)) {
             return '';
         }
 
-        if (($cwd = getcwd()) === false || !chdir($textpacks))
-        {
+        if (($cwd = getcwd()) === false || !chdir($textpacks)) {
             return '';
         }
 
         $out = array();
 
-        foreach ((array) glob('*.textpack', GLOB_NOSORT) as $file)
-        {
-            if (!is_file($file) || !is_readable($file))
-            {
+        foreach ((array) glob('*.textpack', GLOB_NOSORT) as $file) {
+            if (!is_file($file) || !is_readable($file)) {
                 continue;
             }
 
             $file = file_get_contents($file);
 
-            if (!preg_match('/^#@language|\n#@language\s/', $file))
-            {
+            if (!preg_match('/^#@language|\n#@language\s/', $file)) {
                 array_unshift($out, $file);
                 continue;
             }
@@ -214,20 +197,15 @@ class Manifest extends Base
     {
         $out = array();
 
-        if (isset($this->manifest->help->file))
-        {
-            foreach ((array) $this->manifest->help->file as $file)
-            {
+        if (isset($this->manifest->help->file)) {
+            foreach ((array) $this->manifest->help->file as $file) {
                 $file = $this->path($file);
 
-                if (file_exists($file) && is_file($file) && is_readable($file))
-                {
+                if (file_exists($file) && is_file($file) && is_readable($file)) {
                     $out[] = file_get_contents($file);
                 }
             }
-        }
-        else if (isset($this->manifest->help))
-        {
+        } else if (isset($this->manifest->help)) {
             $out[] = (string) $this->manifest->help;
         }
 

@@ -65,8 +65,7 @@ class Inject
     static public $admin_side_plugins = 1;
 }
 
-if (!Inject::$ready && new Textpattern() && Textpattern::$path)
-{
+if (!Inject::$ready && new Textpattern() && Textpattern::$path) {
     // Allow all variables Textpattern creates in its global scope
     // go to the global namespace here.
 
@@ -78,8 +77,7 @@ if (!Inject::$ready && new Textpattern() && Textpattern::$path)
     define('txpinterface', 'admin');
     define('txpath', Textpattern::$path);
 
-    if (file_exists('./config.php'))
-    {
+    if (file_exists('./config.php')) {
         require_once './config.php';
     }
 
@@ -91,10 +89,8 @@ if (!Inject::$ready && new Textpattern() && Textpattern::$path)
             './lib/txplib_misc.php',
             './lib/txplib_db.php',
         ) as $file
-    )
-    {
-        if (file_exists($file))
-        {
+    ) {
+        if (file_exists($file)) {
             require_once $file;
         }
     }
@@ -116,10 +112,8 @@ if (!Inject::$ready && new Textpattern() && Textpattern::$path)
             './lib/txplib_theme.php',
             './lib/txplib_validator.php',
         ) as $file
-    )
-    {
-        if (file_exists($file))
-        {
+    ) {
+        if (file_exists($file)) {
             require_once $file;
         }
     }
@@ -129,8 +123,7 @@ if (!Inject::$ready && new Textpattern() && Textpattern::$path)
     $event = '';
     $step = '';
 
-    if (file_exists('./include/txp_plugin.php'))
-    {
+    if (file_exists('./include/txp_plugin.php')) {
         require_once './include/txp_plugin.php';
     }
 

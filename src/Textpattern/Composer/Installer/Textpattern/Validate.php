@@ -60,8 +60,7 @@ class Validate
     {
         global $txpcfg;
 
-        if (is_array($txpcfg))
-        {
+        if (is_array($txpcfg)) {
             $this->txpcfg = $txpcfg;
         }
 
@@ -79,16 +78,13 @@ class Validate
     {
         $missing = array();
 
-        foreach ($this->required as $required)
-        {
-            if (!array_key_exists($required, $this->txpcfg))
-            {
+        foreach ($this->required as $required) {
+            if (!array_key_exists($required, $this->txpcfg)) {
                 $missing[] = $required;
             }
         }
 
-        if ($missing)
-        {
+        if ($missing) {
             throw new \InvalidArgumentException('Textpattern installation missing config values: '.implode(', ', $missing));
         }
     }
@@ -101,22 +97,21 @@ class Validate
 
     public function hasDatabase()
     {
-        try
-        {
-            $pdo = new \PDO('mysql:host='.$this->txpcfg['host'].';dbname='.$this->txpcfg['db'], $this->txpcfg['user'], $this->txpcfg['pass']);
-        }
-        catch (\PDOException $e)
-        {
+        try {
+            $pdo = new \PDO(
+                'mysql:host='.$this->txpcfg['host'].';dbname='.$this->txpcfg['db'],
+                $this->txpcfg['user'],
+                $this->txpcfg['pass']
+            );
+        } catch (\PDOException $e) {
             $pdo = false;
         }
 
-        if ($pdo === false)
-        {
+        if ($pdo === false) {
             throw new \InvalidArgumentException('Unable connect to Textpattern database: '.$this->txpcfg['db'].'@'.$this->txpcfg['host']);
         }
 
-        if (!$pdo->prepare('SHOW TABLES LIKE ?')->execute(array($this->txpcfg['table_prefix'] . 'textpattern')))
-        {
+        if (!$pdo->prepare('SHOW TABLES LIKE ?')->execute(array($this->txpcfg['table_prefix'] . 'textpattern'))) {
             throw new \InvalidArgumentException('Textpattern is not installed');
         }
     }
