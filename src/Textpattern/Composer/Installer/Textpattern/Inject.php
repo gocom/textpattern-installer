@@ -118,6 +118,7 @@ if (!Inject::$ready && new Textpattern() && Textpattern::$path) {
         }
     }
 
+	error_reporting(0);
     set_error_handler(array(new Error, 'clean'));
     $theme = \theme::init();
     $event = '';
