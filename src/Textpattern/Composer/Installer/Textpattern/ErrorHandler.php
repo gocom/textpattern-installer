@@ -32,9 +32,12 @@ class ErrorHandler
 {
     /**
      * Eats all error messages it can.
+     *
+     * @return bool TRUE
      */
 
     public function clean()
     {
+        return true;
     }
 }
