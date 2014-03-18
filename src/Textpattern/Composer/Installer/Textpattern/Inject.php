@@ -105,27 +105,30 @@ if (!Inject::$ready && new Textpattern() && Textpattern::$path) {
     set_pref('use_plugins', 0);
     set_pref('admin_side_plugins', 0);
 
-    foreach (
-        array(
-            './publish.php',
-            './lib/txplib_head.php',
-            './lib/txplib_theme.php',
-            './lib/txplib_validator.php',
-        ) as $file
-    ) {
-        if (file_exists($file)) {
-            require_once $file;
+    try {
+        foreach (
+            array(
+                './publish.php',
+                './lib/txplib_head.php',
+                './lib/txplib_theme.php',
+                './lib/txplib_validator.php',
+            ) as $file
+        ) {
+            if (file_exists($file)) {
+                require_once $file;
+            }
         }
-    }
 
-	error_reporting(0);
-    set_error_handler(array(new Error, 'clean'));
-    $theme = \theme::init();
-    $event = '';
-    $step = '';
+	    error_reporting(0);
+        set_error_handler(array(new Error, 'clean'));
+        $theme = \theme::init();
+        $event = '';
+        $step = '';
 
-    if (file_exists('./include/txp_plugin.php')) {
-        require_once './include/txp_plugin.php';
+        if (file_exists('./include/txp_plugin.php')) {
+            require_once './include/txp_plugin.php';
+        }
+    } catch (Exception $e) {
     }
 
     // Reset plugin preferences to what they were before disabling.
