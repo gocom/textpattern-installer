@@ -19,6 +19,9 @@
     "require": {
         "textpattern/lock": ">=4.4.1"
     },
+    "require-dev": {
+        "squizlabs/php_codesniffer": "1.5.*"
+    },
     "autoload": {
         "psr-0": {"Textpattern\\Composer\\Installer\\": "src/"}
     },
