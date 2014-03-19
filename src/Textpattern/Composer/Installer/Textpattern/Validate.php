@@ -85,7 +85,9 @@ class Validate
         }
 
         if ($missing) {
-            throw new \InvalidArgumentException('Textpattern installation missing config values: '.implode(', ', $missing));
+            throw new \InvalidArgumentException(
+                'Textpattern installation missing config values: '.implode(', ', $missing)
+            );
         }
     }
 
@@ -108,7 +110,9 @@ class Validate
         }
 
         if ($pdo === false) {
-            throw new \InvalidArgumentException('Unable connect to Textpattern database: '.$this->txpcfg['db'].'@'.$this->txpcfg['host']);
+            throw new \InvalidArgumentException(
+                'Unable connect to Textpattern database: '.$this->txpcfg['db'].'@'.$this->txpcfg['host']
+            );
         }
 
         if (!$pdo->prepare('SHOW TABLES LIKE ?')->execute(array($this->txpcfg['table_prefix'] . 'textpattern'))) {

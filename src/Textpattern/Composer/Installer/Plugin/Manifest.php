@@ -23,6 +23,7 @@
  */
 
 namespace Textpattern\Composer\Installer\Plugin;
+
 use Textpattern\Composer\Installer\Textpattern\Inject as Textpattern;
 
 /**
@@ -38,6 +39,24 @@ class Manifest extends Base
      */
 
     protected $manifest;
+
+    /**
+     * An array of manifest filenames.
+     *
+     * @var array
+     */
+
+    protected $manifestNames = array(
+        'manifest.json',
+    );
+
+    /**
+     * Pattern for validating the plugin name.
+     *
+     * @var string
+     */
+
+    protected $pluginNamePattern = '/^[a-z][a-z0-9]{2}_[a-z0-9\_]{1,64}$/i';
 
     /**
      * Find the plugin project directory and manifest from the package.
@@ -73,16 +92,21 @@ class Manifest extends Base
      * {pfx} is the plugin author prefix and the {pluginName} is the name of
      * the plugin consisting of up to 64 ASCII letter and numbers.
      *
-     * @return bool
+     * @param  string $file Full resolved pathname to the file
+     * @return bool   TRUE if valid, FALSE otherwise
      */
 
     protected function isManifest($file)
     {
-        if (basename($file) === 'manifest.json' && is_file($file) && is_readable($file) && $contents = file_get_contents($file)) {
-            $this->manifest = @json_decode($contents);
+        if (in_array(basename($file), $this->manifestNames, true)) && is_file($file) && is_readable($file)) {
+            if ($contents = file_get_contents($file)) {
+                $this->manifest = @json_decode($contents);
 
-            if ($this->manifest && isset($this->manifest->name) && is_string($this->manifest->name)) {
-                return $this->manifest->name === basename(dirname($file)) && preg_match('/^[a-z][a-z0-9]{2}_[a-z0-9\_]{1,64}$/i', $this->manifest->name);
+                if ($this->manifest && isset($this->manifest->name) && is_string($this->manifest->name)) {
+                    if ($this->manifest->name === basename(dirname($file))) {
+                        return (bool) preg_match($this->pluginNamePattern, $this->manifest->name);
+                    }
+                }
             }
         }
 
@@ -205,7 +229,7 @@ class Manifest extends Base
                     $out[] = file_get_contents($file);
                 }
             }
-        } else if (isset($this->manifest->help)) {
+        } elseif (isset($this->manifest->help)) {
             $out[] = (string) $this->manifest->help;
         }
 

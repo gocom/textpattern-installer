@@ -23,6 +23,7 @@
  */
 
 namespace Textpattern\Composer\Installer\Installer;
+
 use Composer\Package\PackageInterface;
 use Composer\Repository\InstalledRepositoryInterface;
 use Composer\Installer\LibraryInstaller;

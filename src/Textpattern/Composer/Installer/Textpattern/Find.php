@@ -62,7 +62,9 @@ class Find
             }
 
             if (!self::$path) {
-                throw new \InvalidArgumentException('Textpattern installation location was not found.');
+                throw new \InvalidArgumentException(
+                    'Textpattern installation location was not found.'
+                );
             }
         }
     }
@@ -105,8 +107,10 @@ class Find
 
     protected function isConfig($file)
     {
-        if (basename($file) === 'config.php' && is_file($file) && is_readable($file) && $contents = file_get_contents($file)) {
-            if (strpos($contents, 'txpcfg') !== false && file_exists(dirname($file) . '/publish.php')) {
+        if (basename($file) === 'config.php' && is_file($file) && is_readable($file)) {
+            $contents = file_get_contents($file);
+
+            if ($contents && strpos($contents, 'txpcfg') !== false && file_exists(dirname($file) . '/publish.php')) {
                 return dirname($file);
             }
         }
@@ -131,7 +135,10 @@ class Find
             return rtrim('./' . substr(self::$path, strlen($current) + 1), '\\/');
         }
 
-        throw new \InvalidArgumentException('Unable to resolve relative path to Textpattern installation location from the current working directory.');
+        throw new \InvalidArgumentException(
+            'Unable to resolve relative path to Textpattern installation location '.
+            'from the current working directory.'
+        );
     }
 
     /**
