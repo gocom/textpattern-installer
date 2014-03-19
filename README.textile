@@ -151,6 +151,12 @@ p. As a installer for Textpattern, it requires a configured and functional, exis
 
 h2. Changelog
 
+h3. 1.0.5 - 2014/03/19
+
+* Added: Suppress ErrorExceptions during installation. Certain Textpattern versions and plugins may invoke notices and warnings.
+* Added: Validate Textpattern database and connection using PDO.
+* Added: Textpattern 4.4.1 compatibility.
+
 h3. 1.0.4 - 2013/05/12
 
 * Fixed: Fixed translation installation. Default Textpack language wasn't installed when there was more than one language.
