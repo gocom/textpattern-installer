@@ -38,5 +38,3 @@ h2. Versioning
 * Only major versions can make incompatible API changes.
 * Minor versions can add backwards-compatible features and changes.
 * Patch versions should only contain fixes.
-
-Keep backwards compatibility in mind when you do changes to the Textile language, its processing or to the application interface.
