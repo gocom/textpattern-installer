@@ -99,7 +99,7 @@ class Manifest extends Base
 
     protected function isManifest($file)
     {
-        if (in_array(basename($file), $this->manifestNames, true)) && is_file($file) && is_readable($file)) {
+        if (in_array(basename($file), $this->manifestNames, true) && is_file($file) && is_readable($file)) {
             if ($contents = file_get_contents($file)) {
                 $this->manifest = @json_decode($contents);
 
