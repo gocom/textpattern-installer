@@ -161,4 +161,30 @@ abstract class Base
 
         return $path;
     }
+
+    /**
+     * Gets a relative path to a file.
+     *
+     * @param  string $from The path from
+     * @param  string $to   The path to
+     * @return string
+     */
+
+    protected function getRelativePath($from, $to)
+    {
+        $from = explode('/', str_replace('\\', '/', $from));
+        $to = explode('/', str_replace('\\', '/', $to));
+
+        foreach($from as $depth => $dir) {
+            if(isset($to[$depth]) && $dir === $to[$depth]) {
+                unset($to[$depth], $from[$depth]);
+            }
+        }
+
+        for ($i = 0; $i < count($from) - 1; $i++) {
+            array_unshift($to, '..');
+        }
+
+        return implode('/', $to);
+    }
 }

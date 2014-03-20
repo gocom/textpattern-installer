@@ -25,6 +25,7 @@
 namespace Textpattern\Composer\Installer\Plugin;
 
 use Textpattern\Composer\Installer\Textpattern\Inject as Textpattern;
+use Textpattern\Composer\Installer\Textpattern\Find as FindTextpattern;
 
 /**
  * Processes the manifest configuration.
@@ -159,9 +160,17 @@ class Manifest extends Base
             }
         }
 
+        $pathFrom = (string) new FindTextpattern() . '/index.php';
+
         foreach ($files as $path) {
-            if (file_exists($path) && is_file($path) && is_readable($path) && $contents = file_get_contents($path)) {
-                $out[] = trim(preg_replace('/^<\?(php)?|\?>$/', '', $contents), "\r\n");
+            if (file_exists($path) && is_file($path) && is_readable($path)) {
+                $includePath = $this->getRelativePath($pathFrom, realpath($path));
+
+                if ($includePath !== $path) {
+                    $out[] = "include txpath.'/".addSlashes($includePath)."';";
+                } else {
+                    $out[] = "include '".addSlashes($includePath)."';";
+                }
             }
         }
 
