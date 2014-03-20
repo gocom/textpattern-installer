@@ -167,9 +167,9 @@ class Manifest extends Base
                 $includePath = $this->getRelativePath($pathFrom, realpath($path));
 
                 if ($includePath !== $path) {
-                    $out[] = "include txpath.'/".addSlashes($includePath)."';";
+                    $out[] = "include txpath.'/".addslashes($includePath)."';";
                 } else {
-                    $out[] = "include '".addSlashes($includePath)."';";
+                    $out[] = "include '".addslashes($includePath)."';";
                 }
             }
         }
