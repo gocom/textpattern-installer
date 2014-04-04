@@ -121,8 +121,8 @@ class Manifest extends Base
     protected function import()
     {
         $plugin = (object) null;
-        $plugin->name = $this->manifest->name;
-        $plugin->version = $this->manifest->version;
+        $plugin->name = basename($this->composerPackage->getPrettyName());
+        $plugin->version = substr($this->composerPackage->getVersion(), 0, 10);
         $plugin->author = $this->manifest->author;
         $plugin->author_uri = $this->manifest->author_uri;
         $plugin->description = $this->manifest->description;

@@ -24,6 +24,8 @@
 
 namespace Textpattern\Composer\Installer\Plugin;
 
+use Composer\Package\PackageInterface;
+
 /**
  * Process the manifest configuration.
  */
@@ -55,12 +57,21 @@ abstract class Base
     protected $package = array();
 
     /**
+     * Stores the composer package instance.
+     *
+     * @var PackageInterface
+     */
+
+    protected $composerPackage;
+
+    /**
      * Constructor.
      */
 
-    public function __construct($directory)
+    public function __construct($directory, PackageInterface $composerPackage = null)
     {
         $this->dir = $directory;
+        $this->composerPackage = $composerPackage;
 
         if ($this->find($directory)) {
             $this->package();
