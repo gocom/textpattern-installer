@@ -126,7 +126,12 @@ class Manifest extends Base
         $plugin->author = $this->manifest->author;
         $plugin->author_uri = $this->manifest->author_uri;
         $plugin->description = $this->manifest->description;
-        $plugin->type = $this->manifest->type;
+        $plugin->type = (int) $this->manifest->type;
+
+        if (version_compare(get_pref('version'), '4.5.0') < 0 && $plugin->type === 5) {
+            $plugin->type = 0;
+        }
+
         $plugin->order = (int) $this->manifest->order;
         $plugin->allow_html_help = 0;
         $plugin->code = $this->code();
