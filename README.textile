@@ -9,7 +9,9 @@ $ composer remove rah/rah_replace
 $ composer update
 $ composer install
 
-Normally installing Textpattern plugins requires that you manually download an installation package, upload the package through your admin-panel, and then go through a multi-step installer process; rinse and repeat for every plugin, and when you need to update one. With Composer, it's all managed through the dependency manager. Any theme or a plugin can be installed, updated, or uninstalled, using a single command. And it comes with all other Composers benefits such as being able to commit your package manifesto under version control system, and all of your teammates will have the same set of plugins synched without any extra fiddling.
+Normally installing Textpattern plugins requires that you manually download an installation package, upload the package through your admin-panel, and then go through a multi-step installer process; rinse and repeat for every plugin, and when you need to update one.
+
+With Composer, it's all managed through the dependency manager. Any theme or a plugin can be installed, updated, or uninstalled, using a single command. And it comes with all other Composers benefits such as being able to commit your package manifesto under version control system, and all of your teammates will have the same set of plugins synched without any extra fiddling.
 
 h2. Quick start for end-users
 
