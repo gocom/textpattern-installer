@@ -119,8 +119,8 @@ if (!Inject::$ready && new Textpattern() && Textpattern::$path) {
         }
     }
 
-    if (class_exists('Trace')) {
-        $trace = new Trace();
+    if (class_exists('\Trace')) {
+        $trace = new \Trace();
     }
 
     // Disable plugins during the updating and installing.
