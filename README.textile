@@ -1,8 +1,8 @@
 h1. Textpattern Installer for Composer
 
-"Textpattern Package directory":https://packagist.org/search/?q=textpattern | "Packagist":https://packagist.org/packages/textpattern/installer | "Issues":https://github.com/gocom/textpattern-installer/issues
+"Package directory":https://packagist.org/search/?q=textpattern | "Packagist":https://packagist.org/packages/textpattern/installer | "Issues":https://github.com/gocom/textpattern-installer/issues
 
-Install "Textpattern CMS'":":http://textpattern.io plugins and themes using "Composer":http://getcomposer.org/:
+Install "Textpattern CMS'":http://textpattern.io plugins and themes using "Composer":http://getcomposer.org/:
 
 bc. $ composer require rah/rah_replace
 $ composer remove rah/rah_replace
