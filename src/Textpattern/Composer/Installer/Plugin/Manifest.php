@@ -58,8 +58,8 @@ class Manifest extends Base
      */
 
     protected $helpNames = array(
-        'README.textile',
-        'readme.textile',
+        './README.textile',
+        './readme.textile',
     );
 
     /**
