@@ -1,6 +1,6 @@
 h1. Textpattern Installer for Composer
 
-"Package directory":https://packagist.org/search/?q=textpattern | "Packagist":https://packagist.org/packages/textpattern/installer | "Issues":https://github.com/gocom/textpattern-installer/issues
+"Package directory":https://packagist.org/search/?q=textpattern | "Issues":https://github.com/gocom/textpattern-installer/issues
 
 Install "Textpattern CMS'":http://textpattern.io plugins and themes using "Composer":http://getcomposer.org/:
 
