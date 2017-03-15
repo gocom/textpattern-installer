@@ -112,10 +112,15 @@ if (!Inject::$ready && new Textpattern() && Textpattern::$path) {
         './lib/constants.php',
         './lib/txplib_misc.php',
         './lib/txplib_db.php',
+        './lib/class.trace.php',
     ) as $file) {
         if (file_exists($file)) {
             require_once $file;
         }
+    }
+
+    if (class_exists('Trace')) {
+        $trace = new Trace();
     }
 
     // Disable plugins during the updating and installing.
