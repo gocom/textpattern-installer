@@ -41,6 +41,7 @@ Additionally the package should be named after the plugin or the theme. Availabl
 
 * *textpattern-plugin*: The package contains manifest.json formatted plugin sources. See "an example plugin":https://github.com/gocom/abc_plugin.
 * *textpattern-plugin-package*: The package contains collection of compiled plugin installer files. Any file that's name matches the format @pfx_pluginname_v0.1.0.txt@ will be installed.
+* *textpattern-admin-theme*: The package is an admin-side theme. Themes are installed to @./textpattern/admin-themes@ directory.
 
 h2. Internals
 
@@ -50,10 +51,9 @@ The installer doesn't require any extra configuration from the end-user or the d
 
 h2. Requirements
 
-The installer is compatible with:
-
 * Textpattern 4.4.1, 4.5.7, 4.6.x
 * PHP >=5.5.38
+* PDO
 
 h2. Changelog
 
