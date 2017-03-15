@@ -52,6 +52,17 @@ class Manifest extends Base
     );
 
     /**
+     * Help filenames.
+     *
+     * @var array
+     */
+
+    protected $helpNames = array(
+        'README.textile',
+        'readme.textile',
+    );
+
+    /**
      * Pattern for validating the plugin name.
      *
      * @var string
@@ -235,16 +246,22 @@ class Manifest extends Base
     {
         $out = array();
 
-        if (isset($this->manifest->help->file)) {
-            foreach ((array) $this->manifest->help->file as $file) {
-                $file = $this->path($file);
+        if (isset($this->manifest->help) && is_string($this->manifest->help)) {
+            return (string) $this->manifest->help;
+        }
 
-                if (file_exists($file) && is_file($file) && is_readable($file)) {
-                    $out[] = file_get_contents($file);
-                }
+        if (empty($this->manifest->file)) {
+            $files = $this->helpNames;
+        } else {
+            $files = $this->manifest->help->file;
+        }
+
+        foreach ((array) $files as $file) {
+            $file = $this->path($file);
+
+            if (file_exists($file) && is_file($file) && is_readable($file)) {
+                $out[] = file_get_contents($file);
             }
-        } elseif (isset($this->manifest->help)) {
-            $out[] = (string) $this->manifest->help;
         }
 
         return implode("\n\n", $out);
