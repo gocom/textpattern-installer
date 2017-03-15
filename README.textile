@@ -44,9 +44,9 @@ Additionally the package should be named after the plugin or the theme. Availabl
 
 h2. Internals
 
-The installer works by scanning your @composer.json@ file's sibling directories for a Textpattern installation. If found, it injects Textpattern to the currently running Composer process. It then collects any plugins and themes from composer packages and installs them to your Textpattern installation, invoking plugin-lifecycle updaters and installers as needed. This process can be compatible with, and used by, any plugin or a theme.
+The installer works by scanning @composer.json@ file's sibling and child directories for a Textpattern installation. If found, it injects Textpattern to the currently running Composer process. It then collects any plugins and themes from Composer packages and installs them, invoking plugin-lifecycle updaters and installers as needed. This process can be compatible with, and used by, any plugin or a theme.
 
-The installer doesn't require any extra configuration from the end-user or the developer. All it needs is a functional Textpattern installation, either installed to the same directory as the @composer.json@ file or to a sibling directory.
+The installer doesn't require any extra configuration from the end-user or the developer. All it needs is a functional Textpattern installation, located either in the same directory as the @composer.json@ file or in a child directory.
 
 h2. Requirements
 
