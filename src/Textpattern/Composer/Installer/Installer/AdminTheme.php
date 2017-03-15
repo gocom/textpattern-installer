@@ -58,13 +58,13 @@ class AdminTheme extends LibraryInstaller
     {
         $textpattern = new Textpattern();
         $path = $textpattern->getRelativePath();
-        $themes = $path . '/admin-themes/';
+        $themes = $path . '/admin-themes';
 
         // Textpattern >= 4.5.x uses 'theme' directory.
         if (!file_exists($themes)) {
-            $themes = $path . '/theme/';
+            $themes = $path . '/theme';
         }
 
-        return $themes . basename($package->getPrettyName());
+        return $themes . '/' . basename($package->getPrettyName());
     }
 }
