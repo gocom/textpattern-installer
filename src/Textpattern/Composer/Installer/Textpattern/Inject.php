@@ -94,7 +94,7 @@ if (!Inject::$ready && new Textpattern() && Textpattern::$path) {
     $is_article_list, $status, $id, $c, $context, $q, $m, $pg, $p, $month, $author, $request_uri, $qs,
     $subpath, $req, $page, $css, $pfr, $nolog, $has_article_tag, $txp_current_form, $parentid, $thisauthor,
     $thissection, $is_article_body, $stack_article, $thispage, $uPosted, $limit, $permlinks, $thiscategory,
-    $thisarticle, $variable, $thislink, $theme, $event, $step;
+    $thisarticle, $variable, $thislink, $theme, $event, $step, $trace;
 
     Inject::$ready = true;
     Inject::$cwd = getcwd();
