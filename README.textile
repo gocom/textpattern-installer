@@ -151,6 +151,10 @@ p. As a installer for Textpattern, it requires a configured and functional, exis
 
 h2. Changelog
 
+h3. 1.0.7 - 2017/03/15
+
+* Fixed: Textpattern 4.6.x compatibility.
+
 h3. 1.0.6 - 2014/03/20
 
 * Changed: Includes the flat PHP source files rather than writing the contents to the database. The include paths are relative and expect that the txpath constant is same as the real install location. This lets bytecode caching system cache the source, rather than it being loaded by eval from the database.
