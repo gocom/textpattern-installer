@@ -49,6 +49,7 @@ class Manifest extends Base
 
     protected $manifestNames = array(
         'manifest.json',
+        'composer.json',
     );
 
     /**
@@ -82,15 +83,21 @@ class Manifest extends Base
         if ($iterator = parent::find($directory)) {
             new Textpattern();
 
-            foreach ($iterator as $file) {
-                if ($this->isManifest($file)) {
-                    $this->dir = dirname($file);
-                    $this->import();
+            foreach ($this->manifestNames as $manifestName) {
+                foreach ($iterator as $file) {
+                    if (basename($file) === $manifestName && $this->isManifest($file)) {
+                        $this->dir = dirname($file);
+                        $this->import();
+                    }
+                }
+
+                if (!empty($this->plugin)) {
+                    return true;
                 }
             }
         }
 
-        return !empty($this->plugin);
+        return false;
     }
 
     /**
@@ -110,11 +117,13 @@ class Manifest extends Base
 
     protected function isManifest($file)
     {
-        if (in_array(basename($file), $this->manifestNames, true) && is_file($file) && is_readable($file)) {
+        if (is_file($file) && is_readable($file)) {
             if ($contents = file_get_contents($file)) {
                 $this->manifest = @json_decode($contents);
 
                 if ($this->manifest && isset($this->manifest->name) && is_string($this->manifest->name)) {
+                    $this->manifest->name = basename($this->manifest->name);
+
                     if ($this->manifest->name === basename(dirname($file))) {
                         return (bool) preg_match($this->pluginNamePattern, $this->manifest->name);
                     }
@@ -134,21 +143,67 @@ class Manifest extends Base
         $plugin = (object) null;
         $plugin->name = basename($this->composerPackage->getPrettyName());
         $plugin->version = substr($this->composerPackage->getVersion(), 0, 10);
-        $plugin->author = $this->manifest->author;
-        $plugin->author_uri = $this->manifest->author_uri;
-        $plugin->description = $this->manifest->description;
-        $plugin->type = (int) $this->manifest->type;
+        $plugin->author = '';
+        $plugin->author_uri = '';
+        $plugin->description = '';
+        $plugin->type = 0;
+        $plugin->order = 5;
+        $plugin->flags = 0;
+        $plugin->allow_html_help = 0;
+        $plugin->help = '';
+
+        if (!empty($this->manifest->extra->manifest)) {
+            foreach ((array) get_object_vars($plugin) as $name => $value) {
+                if (isset($this->manifest->extra->manifest->$name)) {
+                    $this->manifest->$name = $this->manifest->extra->manifest->$name;
+                }
+            }
+        }
+
+        if (!empty($this->manifest->authors) && is_array($this->manifest->authors)) {
+            if (isset($this->manifest->authors[0]->name)) {
+                $plugin->author = $this->manifest->authors[0]->name;
+            }
+
+            if (isset($this->manifest->authors[0]->homepage)) {
+                $plugin->author_uri = $this->manifest->authors[0]->homepage;
+            }
+        }
+
+        if (isset($this->manifest->author)) {
+            $plugin->author = $this->manifest->author;
+        }
+
+        if (isset($this->manifest->author_uri)) {
+            $plugin->author_uri = $this->manifest->author_uri;
+        }
+
+        if (isset($this->manifest->homepage)) {
+            $plugin->author_uri = $this->manifest->homepage;
+        }
+
+        if (isset($this->manifest->description)) {
+            $plugin->description = $this->manifest->description;
+        }
+
+        if (isset($this->manifest->type)) {
+            $plugin->type = (int) $this->manifest->type;
+        }
 
         if (version_compare(get_pref('version'), '4.5.0') < 0 && $plugin->type === 5) {
             $plugin->type = 0;
         }
 
-        $plugin->order = (int) $this->manifest->order;
-        $plugin->allow_html_help = 0;
+        if (isset($this->manifest->order)) {
+            $plugin->order = (int) $this->manifest->order;
+        }
+
+        if (isset($this->manifest->flags)) {
+            $plugin->flags = (int) $this->manifest->flags;
+        }
+
         $plugin->code = $this->code();
         $plugin->md5 = md5($plugin->code);
-        $plugin->flags = (int) $this->manifest->flags;
-        $plugin->help = '';
         $plugin->help_raw = $this->help();
         $plugin->textpack = $this->textpack();
         $this->plugin[] = $plugin;
