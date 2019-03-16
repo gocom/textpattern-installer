@@ -57,6 +57,6 @@ class PublicTheme extends LibraryInstaller
     public function getInstallPath(PackageInterface $package)
     {
         $textpattern = new Textpattern();
-        return dirname($textpattern->getRelativePath()) . '/theme/' . basename($package->getPrettyName());
+        return dirname($textpattern->getRelativePath()) . '/themes/' . basename($package->getPrettyName());
     }
 }
