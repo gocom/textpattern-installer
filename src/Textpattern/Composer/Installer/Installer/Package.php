@@ -4,7 +4,7 @@
  * Textpattern Installer for Composer
  * https://github.com/gocom/textpattern-installer
  *
- * Copyright (C) 2013 Jukka Svahn
+ * Copyright (C) 2019 Jukka Svahn
  *
  * This file is part of Textpattern Installer.
  *
@@ -34,7 +34,6 @@ namespace Textpattern\Composer\Installer\Installer;
  * Any file that matches the pattern will be considered as a plugin
  * package.
  */
-
 class Package extends Base
 {
     protected $textpatternType = 'textpattern-plugin-package';

@@ -4,7 +4,7 @@
  * Textpattern Installer for Composer
  * https://github.com/gocom/textpattern-installer
  *
- * Copyright (C) 2013 Jukka Svahn
+ * Copyright (C) 2019 Jukka Svahn
  *
  * This file is part of Textpattern Installer.
  *
@@ -30,7 +30,6 @@ use Textpattern\Composer\Installer\Textpattern\ErrorHandler as Error;
 /**
  * Injects Textpattern sources to the process.
  */
-
 class Inject
 {
     /**
@@ -38,7 +37,6 @@ class Inject
      *
      * @var bool
      */
-
     static public $ready = false;
 
     /**
@@ -46,7 +44,6 @@ class Inject
      *
      * @var string
      */
-
     static public $cwd = '';
 
     /**
@@ -54,7 +51,6 @@ class Inject
      *
      * @var int
      */
-
     static public $plugins = 1;
 
     /**
@@ -62,7 +58,6 @@ class Inject
      *
      * @var int
      */
-
     static public $admin_side_plugins = 1;
 }
 

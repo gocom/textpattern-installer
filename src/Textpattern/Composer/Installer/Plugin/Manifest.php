@@ -30,7 +30,6 @@ use Textpattern\Composer\Installer\Textpattern\Find as FindTextpattern;
 /**
  * Processes the manifest configuration.
  */
-
 class Manifest extends Base
 {
     /**
@@ -38,7 +37,6 @@ class Manifest extends Base
      *
      * @var stdClass
      */
-
     protected $manifest;
 
     /**
@@ -46,7 +44,6 @@ class Manifest extends Base
      *
      * @var array
      */
-
     protected $manifestNames = array(
         'manifest.json',
         'composer.json',
@@ -57,7 +54,6 @@ class Manifest extends Base
      *
      * @var array
      */
-
     protected $helpNames = array(
         './README.textile',
         './readme.textile',
@@ -68,7 +64,6 @@ class Manifest extends Base
      *
      * @var string
      */
-
     protected $pluginNamePattern = '/^[a-z][a-z0-9]{2}_[a-z0-9\_]{1,64}$/i';
 
     /**
@@ -77,7 +72,6 @@ class Manifest extends Base
      * @param  string      $directory
      * @return bool
      */
-
     protected function find($directory)
     {
         if ($iterator = parent::find($directory)) {
@@ -114,7 +108,6 @@ class Manifest extends Base
      * @param  string $file Full resolved pathname to the file
      * @return bool   TRUE if valid, FALSE otherwise
      */
-
     protected function isManifest($file)
     {
         if (is_file($file) && is_readable($file)) {
@@ -137,7 +130,6 @@ class Manifest extends Base
     /**
      * Imports plugin manifest files to the database.
      */
-
     protected function import()
     {
         $plugin = (object) null;
@@ -218,7 +210,6 @@ class Manifest extends Base
      *
      * @return string
      */
-
     protected function code()
     {
         $files = $out = array();
@@ -257,7 +248,6 @@ class Manifest extends Base
      *
      * @return string
      */
-
     protected function textpack()
     {
         $textpacks = $this->dir . '/textpacks';
@@ -296,7 +286,6 @@ class Manifest extends Base
      *
      * @return string
      */
-
     protected function help()
     {
         $out = array();

@@ -4,7 +4,7 @@
  * Textpattern Installer for Composer
  * https://github.com/gocom/textpattern-installer
  *
- * Copyright (C) 2013 Jukka Svahn
+ * Copyright (C) 2019 Jukka Svahn
  *
  * This file is part of Textpattern Installer.
  *
@@ -32,7 +32,6 @@ use Textpattern\Composer\Installer\Textpattern\Find as Textpattern;
 /**
  * Installer for Textpacks.
  */
-
 class Textpack extends LibraryInstaller
 {
     /**
@@ -41,7 +40,6 @@ class Textpack extends LibraryInstaller
      * @param  string $packageType
      * @return bool
      */
-
     public function supports($packageType)
     {
         return $packageType === 'textpattern-textpack';
@@ -53,7 +51,6 @@ class Textpack extends LibraryInstaller
      * @param  PackageInterface $package
      * @return string
      */
-
     public function getInstallPath(PackageInterface $package)
     {
         $textpattern = new Textpattern();

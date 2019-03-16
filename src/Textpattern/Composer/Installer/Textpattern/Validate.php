@@ -4,7 +4,7 @@
  * Textpattern Installer for Composer
  * https://github.com/gocom/textpattern-installer
  *
- * Copyright (C) 2013 Jukka Svahn
+ * Copyright (C) 2019 Jukka Svahn
  *
  * This file is part of Textpattern Installer.
  *
@@ -27,7 +27,6 @@ namespace Textpattern\Composer\Installer\Textpattern;
 /**
  * Finds closest Textpattern installation location.
  */
-
 class Validate
 {
     /**
@@ -35,7 +34,6 @@ class Validate
      *
      * @var array
      */
-
     protected $txpcfg = array();
 
     /**
@@ -43,7 +41,6 @@ class Validate
      *
      * @var array
      */
-
     protected $required = array(
         'db',
         'user',
@@ -55,7 +52,6 @@ class Validate
     /**
      * Constructor.
      */
-
     public function __construct()
     {
         global $txpcfg;
@@ -73,7 +69,6 @@ class Validate
      *
      * @throws \InvalidArgumentException
      */
-
     public function isValidConfig()
     {
         $missing = array();
@@ -96,7 +91,6 @@ class Validate
      *
      * @throws \InvalidArgumentException
      */
-
     public function hasDatabase()
     {
         try {

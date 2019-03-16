@@ -4,7 +4,7 @@
  * Textpattern Installer for Composer
  * https://github.com/gocom/textpattern-installer
  *
- * Copyright (C) 2013 Jukka Svahn
+ * Copyright (C) 2019 Jukka Svahn
  *
  * This file is part of Textpattern Installer.
  *
@@ -29,7 +29,6 @@ use Composer\Package\PackageInterface;
 /**
  * Process the manifest configuration.
  */
-
 abstract class Base
 {
     /**
@@ -37,7 +36,6 @@ abstract class Base
      *
      * @var string
      */
- 
     protected $dir;
 
     /**
@@ -45,7 +43,6 @@ abstract class Base
      *
      * @var array
      */
-
     protected $plugin = array();
 
     /**
@@ -53,7 +50,6 @@ abstract class Base
      *
      * @var array
      */
-
     protected $package = array();
 
     /**
@@ -67,7 +63,6 @@ abstract class Base
     /**
      * Constructor.
      */
-
     public function __construct($directory, PackageInterface $composerPackage = null)
     {
         $this->dir = $directory;
@@ -86,7 +81,6 @@ abstract class Base
      * @param  string                         $directory
      * @return RecursiveIteratorIterator|bool
      */
-
     protected function find($directory)
     {
         if (!file_exists($directory) || !is_dir($directory) || !is_readable($directory)) {
@@ -100,7 +94,6 @@ abstract class Base
     /**
      * Packages the plugin data.
      */
-
     protected function package()
     {
         foreach ((array) $this->plugin as $plugin) {
@@ -111,7 +104,6 @@ abstract class Base
     /**
      * Installs a plugin.
      */
-
     public function install()
     {
         $this->update();
@@ -124,7 +116,6 @@ abstract class Base
     /**
      * Updates a plugin.
      */
-
     public function update()
     {
         foreach ((array) $this->package as $package) {
@@ -138,7 +129,6 @@ abstract class Base
     /**
      * Uninstalls a plugin.
      */
-
     public function uninstall()
     {
         $_POST['selected'] = array();
@@ -159,7 +149,6 @@ abstract class Base
      * @param  string $path
      * @return string
      */
-
     protected function path($path)
     {
         if (strpos($path, './') === 0) {
@@ -180,7 +169,6 @@ abstract class Base
      * @param  string $to   The path to
      * @return string
      */
-
     protected function getRelativePath($from, $to)
     {
         $from = explode('/', str_replace('\\', '/', $from));

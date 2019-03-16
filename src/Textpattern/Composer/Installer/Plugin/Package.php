@@ -29,7 +29,6 @@ use Textpattern\Composer\Installer\Textpattern\Inject as Textpattern;
 /**
  * Processes packaged installer collections.
  */
-
 class Package extends Base
 {
     /**
@@ -37,7 +36,6 @@ class Package extends Base
      *
      * @var string
      */
-
     protected $packageNamePattern = '/^[a-z0-9]{3}_[a-z0-9\_]{0,64}_v[a-z0-9\-\.]+(_zip)?\.txt$/i';
 
     /**
@@ -46,7 +44,6 @@ class Package extends Base
      * @param  string $directory
      * @return bool
      */
-
     protected function find($directory)
     {
         if ($iterator = parent::find($directory)) {
@@ -68,7 +65,6 @@ class Package extends Base
     /**
      * Skip packager, just inject Textpattern.
      */
-
     protected function package()
     {
         new Textpattern();

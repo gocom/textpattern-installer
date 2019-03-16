@@ -4,7 +4,7 @@
  * Textpattern Installer for Composer
  * https://github.com/gocom/textpattern-installer
  *
- * Copyright (C) 2013 Jukka Svahn
+ * Copyright (C) 2019 Jukka Svahn
  *
  * This file is part of Textpattern Installer.
  *
@@ -32,7 +32,6 @@ use Textpattern\Composer\Installer\Textpattern\Find as Textpattern;
 /**
  * Custom composer installer for Textpattern plugins.
  */
-
 abstract class Base extends LibraryInstaller
 {
     /**
@@ -40,7 +39,6 @@ abstract class Base extends LibraryInstaller
      *
      * @var string
      */
-
     protected $textpatternType;
 
     /**
@@ -48,7 +46,6 @@ abstract class Base extends LibraryInstaller
      *
      * @var string
      */
-
     protected $textpatternPackager;
 
     /**
@@ -57,7 +54,6 @@ abstract class Base extends LibraryInstaller
      * @param  string $packageType
      * @return bool
      */
-
     public function supports($packageType)
     {
         return $packageType === $this->textpatternType;
@@ -69,7 +65,6 @@ abstract class Base extends LibraryInstaller
      * @param InstalledRepositoryInterface $repo
      * @param PackageInterface             $package
      */
-
     public function install(InstalledRepositoryInterface $repo, PackageInterface $package)
     {
         new Textpattern();
@@ -85,7 +80,6 @@ abstract class Base extends LibraryInstaller
      * @param PackageInterface             $initial
      * @param PackageInterface             $target
      */
-
     public function update(InstalledRepositoryInterface $repo, PackageInterface $initial, PackageInterface $target)
     {
         new Textpattern();
@@ -100,7 +94,6 @@ abstract class Base extends LibraryInstaller
      * @param InstalledRepositoryInterface $repo
      * @param PackageInterface             $package
      */
-
     public function uninstall(InstalledRepositoryInterface $repo, PackageInterface $package)
     {
         new Textpattern();

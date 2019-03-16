@@ -4,7 +4,7 @@
  * Textpattern Installer for Composer
  * https://github.com/gocom/textpattern-installer
  *
- * Copyright (C) 2013 Jukka Svahn
+ * Copyright (C) 2019 Jukka Svahn
  *
  * This file is part of Textpattern Installer.
  *
@@ -27,7 +27,6 @@ namespace Textpattern\Composer\Installer\Textpattern;
 /**
  * Finds closest Textpattern installation location.
  */
-
 class Find
 {
     /**
@@ -35,7 +34,6 @@ class Find
      *
      * @var string|bool
      */
-
     static public $path = false;
 
     /**
@@ -43,7 +41,6 @@ class Find
      *
      * @var array
      */
-
     protected $candidates = array('./');
 
     /**
@@ -51,7 +48,6 @@ class Find
      *
      * @throws \InvalidArgumentException
      */
-
     public function __construct()
     {
         if (self::$path === false) {
@@ -75,7 +71,6 @@ class Find
      * @param  string      The directory
      * @return string|bool The path, or FALSE
      */
- 
     public function find($directory)
     {
         if (($path = $this->isConfig('./textpattern/config.php')) !== false) {
@@ -104,7 +99,6 @@ class Find
      * @param  string      $file The filename
      * @return string|bool Path to the directory, or FALSE
      */
-
     protected function isConfig($file)
     {
         if (basename($file) === 'config.php' && is_file($file) && is_readable($file)) {
@@ -126,7 +120,6 @@ class Find
      * @return string The path
      * @throws \InvalidArgumentException
      */
-
     public function getRelativePath()
     {
         $current = realpath('./');
@@ -146,7 +139,6 @@ class Find
      *
      * @return string The path or an empty string
      */
-
     public function __toString()
     {
         return (string) self::$path;
