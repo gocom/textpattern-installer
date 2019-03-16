@@ -60,7 +60,7 @@ class AdminTheme extends LibraryInstaller
         $path = $textpattern->getRelativePath();
         $themes = $path . '/admin-themes';
 
-        // Textpattern >= 4.5.x uses 'theme' directory.
+        // Textpattern <= 4.5.x uses 'theme' directory.
         if (!file_exists($themes)) {
             $themes = $path . '/theme';
         }
