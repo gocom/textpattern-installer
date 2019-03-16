@@ -34,20 +34,20 @@ class Validate
      *
      * @var array
      */
-    protected $txpcfg = array();
+    protected $txpcfg = [];
 
     /**
      * Required configuration options.
      *
-     * @var array
+     * @var string[]
      */
-    protected $required = array(
+    protected $required = [
         'db',
         'user',
         'pass',
         'host',
         'table_prefix',
-    );
+    ];
 
     /**
      * Constructor.
@@ -71,7 +71,7 @@ class Validate
      */
     public function isValidConfig()
     {
-        $missing = array();
+        $missing = [];
 
         foreach ($this->required as $required) {
             if (!array_key_exists($required, $this->txpcfg)) {

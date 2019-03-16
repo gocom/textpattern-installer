@@ -43,14 +43,14 @@ abstract class Base
      *
      * @var array
      */
-    protected $plugin = array();
+    protected $plugin = [];
 
     /**
      * Stores an array of packaged plugin installers.
      *
      * @var array
      */
-    protected $package = array();
+    protected $package = [];
 
     /**
      * Stores the composer package instance.
@@ -131,7 +131,7 @@ abstract class Base
      */
     public function uninstall()
     {
-        $_POST['selected'] = array();
+        $_POST['selected'] = [];
 
         foreach ((array) $this->plugin as $plugin) {
             $_POST['selected'][] = $plugin->name;
@@ -174,8 +174,8 @@ abstract class Base
         $from = explode('/', str_replace('\\', '/', $from));
         $to = explode('/', str_replace('\\', '/', $to));
 
-        foreach($from as $depth => $dir) {
-            if(isset($to[$depth]) && $dir === $to[$depth]) {
+        foreach ($from as $depth => $dir) {
+            if (isset($to[$depth]) && $dir === $to[$depth]) {
                 unset($to[$depth], $from[$depth]);
             }
         }

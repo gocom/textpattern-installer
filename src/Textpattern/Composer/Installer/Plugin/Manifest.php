@@ -42,22 +42,22 @@ class Manifest extends Base
     /**
      * An array of manifest filenames.
      *
-     * @var array
+     * @var string[]
      */
-    protected $manifestNames = array(
+    protected $manifestNames = [
         'manifest.json',
         'composer.json',
-    );
+    ];
 
     /**
      * Help filenames.
      *
-     * @var array
+     * @var string[]
      */
-    protected $helpNames = array(
+    protected $helpNames = [
         './README.textile',
         './readme.textile',
-    );
+    ];
 
     /**
      * Pattern for validating the plugin name.
@@ -212,10 +212,10 @@ class Manifest extends Base
      */
     protected function code()
     {
-        $files = $out = array();
+        $files = $out = [];
 
         if (isset($this->manifest->code->file)) {
-            $files = array_map(array($this, 'path'), (array) $this->manifest->code->file);
+            $files = array_map([$this, 'path'], (array) $this->manifest->code->file);
         } else {
             if (($cwd = getcwd()) !== false && chdir($this->dir)) {
                 $files = (array) glob('*.php');
@@ -260,7 +260,7 @@ class Manifest extends Base
             return '';
         }
 
-        $out = array();
+        $out = [];
 
         foreach ((array) glob('*.textpack', GLOB_NOSORT) as $file) {
             if (!is_file($file) || !is_readable($file)) {
@@ -288,7 +288,7 @@ class Manifest extends Base
      */
     protected function help()
     {
-        $out = array();
+        $out = [];
 
         if (isset($this->manifest->help) && is_string($this->manifest->help)) {
             return (string) $this->manifest->help;

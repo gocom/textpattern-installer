@@ -34,14 +34,14 @@ class Find
      *
      * @var string|bool
      */
-    static public $path = false;
+    public static $path = false;
 
     /**
      * Candidates for the installation location.
      *
      * @var array
      */
-    protected $candidates = array('./');
+    protected $candidates = ['./'];
 
     /**
      * Constructor.

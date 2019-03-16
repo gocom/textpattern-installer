@@ -1,5 +1,5 @@
 <?php
-
+// phpcs:ignoreFile -- this is an injector file
 /*
  * Textpattern Installer for Composer
  * https://github.com/gocom/textpattern-installer
@@ -103,12 +103,12 @@ if (!Inject::$ready && new Textpattern() && Textpattern::$path) {
 
     new Validate();
 
-    foreach (array(
+    foreach ([
         './lib/constants.php',
         './lib/txplib_misc.php',
         './lib/txplib_db.php',
         './lib/class.trace.php',
-    ) as $file) {
+    ] as $file) {
         if (file_exists($file)) {
             require_once $file;
         }
@@ -129,19 +129,19 @@ if (!Inject::$ready && new Textpattern() && Textpattern::$path) {
     set_pref('admin_side_plugins', 0);
 
     try {
-        foreach (array(
+        foreach ([
             './publish.php',
             './lib/txplib_head.php',
             './lib/txplib_theme.php',
             './lib/txplib_validator.php',
-        ) as $file) {
+        ] as $file) {
             if (file_exists($file)) {
                 require_once $file;
             }
         }
 
         error_reporting(0);
-        set_error_handler(array(new Error, 'clean'));
+        set_error_handler([new Error, 'clean']);
         $theme = \theme::init();
         $event = '';
         $step = '';
