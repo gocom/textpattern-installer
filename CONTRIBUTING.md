@@ -41,7 +41,7 @@ Coding standard
 The project follows the [PSR-0](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-0.md) and [PSR-2](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-2-coding-style-guide-meta.md) standards. You can use PHP_CodeSniffer to make sure your additions follow them too:
 
 ```shell
-$ ./vendor/bin/phpcs --standard=PSR1,PSR2 src
+$ composer cs
 ```
 
 Versioning
