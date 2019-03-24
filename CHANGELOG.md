@@ -5,6 +5,7 @@ Changelog
 -----
 
 * Fixed: Textpattern 4.7.x compatibility.
+* Fixed: Plugin updating.
 
 1.0.7 - 2017/03/15
 -----
