@@ -1,7 +1,7 @@
 Changelog
 =====
 
-1.0.8 - upcoming
+1.0.8 - 2019/03/24
 -----
 
 * Fixed: Textpattern 4.7.x compatibility.
