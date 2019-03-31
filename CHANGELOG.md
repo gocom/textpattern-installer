@@ -1,6 +1,11 @@
 Changelog
 =====
 
+1.0.10 - 2019/03/31
+-----
+
+* Fixed: Incorrect method call.
+
 1.0.9 - 2019/03/31
 -----
 
