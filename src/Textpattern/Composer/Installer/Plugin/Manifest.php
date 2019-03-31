@@ -134,7 +134,7 @@ class Manifest extends Base
     {
         $plugin = (object) null;
         $plugin->name = basename($this->composerPackage->getPrettyName());
-        $plugin->version = substr($this->composerPackage->getVPrettyVersion(), 0, 10);
+        $plugin->version = substr($this->composerPackage->getPrettyVersion(), 0, 10);
         $plugin->author = '';
         $plugin->author_uri = '';
         $plugin->description = '';
