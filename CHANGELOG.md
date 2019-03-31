@@ -1,6 +1,11 @@
 Changelog
 =====
 
+1.0.9 - 2019/03/31
+-----
+
+* Fixed: Doubled help file contents.
+
 1.0.8 - 2019/03/24
 -----
 
