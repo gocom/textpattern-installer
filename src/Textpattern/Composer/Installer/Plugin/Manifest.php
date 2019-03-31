@@ -294,7 +294,7 @@ class Manifest extends Base
             return (string) $this->manifest->help;
         }
 
-        if (empty($this->manifest->file)) {
+        if (empty($this->manifest->help->file)) {
             $files = $this->helpNames;
         } else {
             $files = $this->manifest->help->file;
@@ -304,7 +304,7 @@ class Manifest extends Base
             $file = $this->path($file);
 
             if (file_exists($file) && is_file($file) && is_readable($file)) {
-                $out[] = file_get_contents($file);
+                $out[strtolower($file)] = file_get_contents($file);
             }
         }
 
