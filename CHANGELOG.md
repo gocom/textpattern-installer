@@ -1,7 +1,7 @@
 Changelog
 =====
 
-2.0.0 - 2022/04/14
+2.0.0 - upcoming
 -----
 
 * Composer >= 2.0.0 support.
