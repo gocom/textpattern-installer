@@ -1,4 +1,4 @@
-version: '3'
+version: '3.2'
 
 services:
     php:
@@ -8,6 +8,7 @@ services:
             - ${COMPOSER_HOME:-$HOME/.composer}:/tmp
         networks:
             - app
+
 networks:
     app:
         driver: bridge
