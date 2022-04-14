@@ -20,35 +20,25 @@ $ git config --global user.email john.doe@example.com
 
 Make sure to use an email address that is linked to your GitHub account. It can be a throwaway address or you can use GitHub's email protection features. We don't want your emails, but this is to make sure we know who did what. All commits nicely link to their author, instead of them coming from foobar@invalid.tld.
 
-Dependencies
+Development
 -----
 
-Dependencies are managed using [Composer](https://getcomposer.org). After you have cloned the repository, run composer install:
+For list of available commands, run:
 
 ```shell
-$ composer install
-```
-
-And update before testing and committing:
-
-```shell
-$ composer update
+$ make help
 ```
 
 Coding standard
 -----
 
-The project follows the [PSR-0](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-0.md) and [PSR-2](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-2-coding-style-guide-meta.md) standards. You can use PHP_CodeSniffer to make sure your additions follow them too:
+The project follows the [PSR-0](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-0.md) and [PSR-2](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-2-coding-style-guide-meta.md) standards. You can use PHP_CodeSniffer to make sure your additions follow them too by running:
 
 ```shell
-$ composer cs
+$ make lint
 ```
 
 Versioning
 -----
 
-[Semantic Versioning](http://semver.org/) and major.minor.path format:
-
-* Only major versions can make incompatible API changes.
-* Minor versions can add backwards-compatible features and changes.
-* Patch versions should only contain fixes.
+[Semantic Versioning](http://semver.org/).
