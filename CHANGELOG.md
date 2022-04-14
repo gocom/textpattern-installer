@@ -1,6 +1,12 @@
 Changelog
 =====
 
+1.0.12 - 2022/04/14
+-----
+
+* Fixed: Composer compatibility regression introduced in the last release.
+  Now truly supports Composer >= 2.0.0.
+
 1.0.11 - 2022/04/14
 -----
 
