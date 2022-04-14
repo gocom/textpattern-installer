@@ -1,6 +1,6 @@
 {
     "name": "textpattern/installer",
-    "type": "composer-installer",
+    "type": "composer-plugin",
     "description": "Textpattern plugin and theme installer",
     "keywords": ["textpattern", "plugin", "theme", "txp", "installer"],
     "homepage": "https://github.com/gocom/textpattern-installer",
@@ -17,10 +17,12 @@
     	"source": "https://github.com/gocom/textpattern-installer"
     },
     "require": {
-        "textpattern/lock": ">=4.4.1"
+        "textpattern/lock": ">=4.4.1",
+        "composer-plugin-api": "^1.0 || ^2.0"
     },
     "require-dev": {
-        "squizlabs/php_codesniffer": "3.*"
+        "composer/composer": "^1.6 || ^2.0",
+        "squizlabs/php_codesniffer": "^3.6.2"
     },
     "autoload": {
         "psr-0": {
@@ -37,6 +39,7 @@
         ]
     },
     "scripts": {
-        "cs": "./vendor/bin/phpcs"
+        "lint": "./vendor/bin/phpcs",
+        "lint-fix": "./vendor/bin/phpcbf"
     }
 }

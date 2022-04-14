@@ -27,6 +27,7 @@ namespace Textpattern\Composer\Installer\Installer;
 use Composer\Package\PackageInterface;
 use Composer\Repository\InstalledRepositoryInterface;
 use Composer\Installer\LibraryInstaller;
+use React\Promise\PromiseInterface;
 use Textpattern\Composer\Installer\Textpattern\Find as Textpattern;
 
 /**
@@ -42,17 +43,14 @@ abstract class Base extends LibraryInstaller
     protected $textpatternType;
 
     /**
-     * The plugin packager.
+     * Plugin packager.
      *
      * @var string
      */
     protected $textpatternPackager;
 
     /**
-     * Supports 'textpattern-plugin' type.
-     *
-     * @param  string $packageType
-     * @return bool
+     * {@inheritdoc}
      */
     public function supports($packageType)
     {
@@ -60,45 +58,65 @@ abstract class Base extends LibraryInstaller
     }
 
     /**
-     * Writes the plugin package to the database on install.
-     *
-     * @param InstalledRepositoryInterface $repo
-     * @param PackageInterface             $package
+     * {@inheritdoc}
      */
     public function install(InstalledRepositoryInterface $repo, PackageInterface $package)
     {
         new Textpattern();
-        parent::install($repo, $package);
-        $plugin = new $this->textpatternPackager($this->getInstallPath($package), $package);
-        $plugin->install();
+
+        $then = function () use ($package) {
+            $plugin = new $this->textpatternPackager($this->getInstallPath($package), $package);
+            $plugin->install();
+        };
+
+        $result = parent::install($repo, $package);
+
+        if ($result instanceof PromiseInterface) {
+            return $result->then($then);
+        }
+
+        $then();
     }
 
     /**
-     * Runs updater on package updates.
-     *
-     * @param InstalledRepositoryInterface $repo
-     * @param PackageInterface             $initial
-     * @param PackageInterface             $target
+     * {@inheritdoc}
      */
     public function update(InstalledRepositoryInterface $repo, PackageInterface $initial, PackageInterface $target)
     {
         new Textpattern();
-        parent::update($repo, $initial, $target);
-        $plugin = new $this->textpatternPackager($this->getInstallPath($target), $target);
-        $plugin->update();
+
+        $then = function () use ($target) {
+            $plugin = new $this->textpatternPackager($this->getInstallPath($target), $target);
+            $plugin->update();
+        };
+
+        $result = parent::update($repo, $initial, $target);
+
+        if ($result instanceof PromiseInterface) {
+            return $result->then($then);
+        }
+
+        $then();
     }
 
     /**
-     * Removes the plugin from database when the package is uninstalled.
-     *
-     * @param InstalledRepositoryInterface $repo
-     * @param PackageInterface             $package
+     * {@inheritdoc}
      */
     public function uninstall(InstalledRepositoryInterface $repo, PackageInterface $package)
     {
         new Textpattern();
-        $plugin = new $this->textpatternPackager($this->getInstallPath($package), $package);
-        $plugin->uninstall();
-        parent::uninstall($repo, $package);
+
+        $then = function () use ($package) {
+            $plugin = new $this->textpatternPackager($this->getInstallPath($package), $package);
+            $plugin->uninstall();
+        };
+
+        $result = parent::uninstall($repo, $package);
+
+        if ($result instanceof PromiseInterface) {
+            return $result->then($then);
+        }
+
+        $then();
     }
 }
