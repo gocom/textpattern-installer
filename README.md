@@ -3,40 +3,65 @@ Textpattern Installer for Composer
 
 [Package directory](https://packagist.org/search/?q=textpattern) | [Issues](https://github.com/gocom/textpattern-installer/issues)
 
-Install plugins and themes to [Textpattern CMS](https://textpattern.com) with [Composer](https://getcomposer.org/).
+Install plugins and themes to [Textpattern CMS](https://textpattern.com)
+with [Composer](https://getcomposer.org/) dependency manager.
 
 ```shell
 $ composer require rah/rah_replace
 ```
 
-Overview
+Why Composer?
 -----
 
-Normally installing Textpattern plugins requires that you manually download an installation package, upload the package through your admin-panel, and then go through a multi-step installer process; rinse and repeat for every plugin, and when you need to update one.
+Normally installing Textpattern plugins requires that you manually download an
+installation package, upload the package through your admin-panel, and then go
+through a multi-step installer process; rinse and repeat for every plugin, and
+when you need to update one.
 
-With [Composer](https://getcomposer.org/), it's all managed through the dependency manager. Any theme or a plugin can be installed, updated or uninstalled, using a single command. And it comes with all other Composers benefits such as being able to commit your package manifesto under version control system and all of your teammates will have the same set of plugins synched without any extra fiddling.
+With [Composer](https://getcomposer.org/), it's all managed through the
+dependency manager. Any theme or a plugin can be installed, updated or
+uninstalled, using a single command. This also comes with all the other
+Composer's benefits such as being able to commit your package manifesto under
+version  control system and all of your project teammates will have the same
+set of plugins synced without any extra fiddling.
 
 Quick start for end-users
 -----
 
-After [installing Composer](https://getcomposer.org/doc/00-intro.md) to the host system your Textpattern installation is running on:
+After [installing Composer](https://getcomposer.org/doc/00-intro.md) to your
+host system that Textpattern is installed on, you can start adding plugins
+to Textpattern with Composer from command line.
+
+First, head over to your Textpattern installation location, and tell
+Composer your Textpattern installation version by installing
+[textpattern/lock](https://github.com/gocom/textpattern-lock) meta-package:
 
 ```shell
 $ cd /path/to/your/textpattern/installation/root
 $ composer require textpattern/lock:4.6.2
+```
+
+After that, you can add any plugins and themes to your Textpattern installation
+like any other Composer packages:
+
+```shell
 $ composer require rah/rah_replace rah/rah_flat
 ```
 
-As in the above, to set up:
-
-1. Navigate to your Textpattern installation location containing a `textpattern` directory and a `index.php` file.
-2. Lock-in your installed Textpattern version using the [textpattern/lock](https://github.com/gocom/textpattern-lock) meta-package so that Composer knows your Textpattern version.
-3. You can now install any plugins, themes and libraries like any other Composer package.
+Always run Composer commands in Textpattern installation directory, or in a
+directory right above it; the Composer installer supports installing Textpattern
+to a sub-directory, which would allow Textpattern to be within public HTTP
+server  root directory, while Composer packages can be in a directory above it.
 
 Quick start for developers
 -----
 
-Plugins and themes are just like any other normal Composer package, but with a special [type](https://getcomposer.org/doc/04-schema.md#type) and a matching installer requirement in your [composer.json](https://getcomposer.org/doc/04-schema.md). The package should be named after the plugin or the theme too. An example `composer.json` stub would look like the following:
+Plugins and themes are just like any other normal Composer package, but with a
+special [type](https://getcomposer.org/doc/04-schema.md#type) and a matching
+installer requirement in your
+[composer.json](https://getcomposer.org/doc/04-schema.md). The package should be
+named after the plugin or the theme too. An example `composer.json` stub would
+look like the following:
 
 ```json
 {
@@ -60,13 +85,29 @@ Plugins and themes are just like any other normal Composer package, but with a s
 Internals
 -----
 
-The installer works by scanning `composer.json` file's sibling and child directories for a Textpattern installation. If found, it injects the whole Textpattern application to the currently running Composer process. It then collects any plugins and themes from Composer packages and installs them, invoking plugin-lifecycle updaters and installers as needed. This process can be compatible with, and used by, any plugin or a theme.
+The installer works by scanning `composer.json` file's sibling and child
+directories for a Textpattern installation. If found, it injects the whole
+Textpattern application to the currently running Composer process. It then
+collects any plugins and themes from Composer packages and installs them,
+invoking plugin-lifecycle updaters and installers as needed. This process
+can be compatible with, and used by, any plugin or a theme.
 
-The installer doesn't require any extra configuration from the end-user or the developer. All it needs is a functional Textpattern installation, located either in the same directory as the `composer.json` file or in a child directory. Just note that the system the composer command is ran at, needs to have access to the database; take this in mind if you are, for instance, running the composer command outside a virtualized container.
+The installer doesn't require any extra configuration from the end-user or the
+developer. All it needs is a functional Textpattern installation, located
+either in the same directory as the `composer.json` file or in a child
+directory. Just note that the system the Composer command is ran at, needs to
+have access to the database; take this in mind if you are, for instance, running
+the composer command outside a virtualized container.
 
 Requirements
 -----
 
-* [Textpattern CMS](https://textpattern.com/) 4.4.1, 4.5.7, 4.6.x, 4.7.x
-* [PHP](https://secure.php.net/) >=5.5.38
+* [Composer](https://getcomposer.org/) 1.x, 2.x
+* [Textpattern CMS](https://textpattern.com/) 4.7.x
+* [PHP](https://secure.php.net/) >= 7.4.0
 * [PDO](https://secure.php.net/manual/en/book.pdo.php)
+
+Development
+----
+
+See [CONTRIBUTING.md](CONTRIBUTING.md)
