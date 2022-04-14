@@ -103,8 +103,8 @@ Requirements
 -----
 
 * [Composer](https://getcomposer.org/) 1.x, 2.x
-* [Textpattern CMS](https://textpattern.com/) 4.7.x
-* [PHP](https://secure.php.net/) >= 7.4.0
+* [Textpattern CMS](https://textpattern.com/) 4.4.1, 4.5.7, 4.6.x, 4.7.x, 4.8.x
+* [PHP](https://secure.php.net/) >= 5.5.38
 * [PDO](https://secure.php.net/manual/en/book.pdo.php)
 
 Development

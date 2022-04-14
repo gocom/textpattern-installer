@@ -4,7 +4,7 @@
  * Textpattern Installer for Composer
  * https://github.com/gocom/textpattern-installer
  *
- * Copyright (C) 2019 Jukka Svahn
+ * Copyright (C) 2022 Jukka Svahn
  *
  * This file is part of Textpattern Installer.
  *
@@ -106,17 +106,9 @@ abstract class Base extends LibraryInstaller
     {
         new Textpattern();
 
-        $then = function () use ($package) {
-            $plugin = new $this->textpatternPackager($this->getInstallPath($package), $package);
-            $plugin->uninstall();
-        };
+        $plugin = new $this->textpatternPackager($this->getInstallPath($package), $package);
+        $plugin->uninstall();
 
-        $result = parent::uninstall($repo, $package);
-
-        if ($result instanceof PromiseInterface) {
-            return $result->then($then);
-        }
-
-        $then();
+        return parent::uninstall($repo, $package);
     }
 }

@@ -1,10 +1,11 @@
 Changelog
 =====
 
-2.0.0 - upcoming
+1.0.11 - 2022/04/14
 -----
 
-* Composer >= 2.0.0 support.
+* Fixed: Composer >= 2.0.0 compatibility.
+* Fixed: Textpattern 4.8.0 compatibility.
 
 1.0.10 - 2019/03/31
 -----
