@@ -5,7 +5,7 @@ Changelog
 -----
 
 * Fixed: Composer >= 2.0.0 compatibility.
-* Fixed: Textpattern 4.8.0 compatibility.
+* Fixed: Textpattern 4.8.x compatibility.
 
 1.0.10 - 2019/03/31
 -----
