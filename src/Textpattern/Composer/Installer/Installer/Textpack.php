@@ -54,6 +54,11 @@ class Textpack extends LibraryInstaller
     public function getInstallPath(PackageInterface $package)
     {
         $textpattern = new Textpattern();
+
+        if (!$textpattern->isAvailable()) {
+            return parent::getInstallPath($package);
+        }
+
         return $textpattern->getRelativePath() . '/lang/' . $package->getPrettyName();
     }
 }

@@ -30,11 +30,18 @@ namespace Textpattern\Composer\Installer\Textpattern;
 class Find
 {
     /**
+     * Whether path was searched for.
+     *
+     * @var bool
+     */
+    public static $isInitialized = false;
+
+    /**
      * Path to Textpattern installation.
      *
-     * @var string|bool
+     * @var string|null
      */
-    public static $path = false;
+    public static $path = null;
 
     /**
      * Candidates for the installation location.
@@ -50,54 +57,65 @@ class Find
      */
     public function __construct()
     {
-        if (self::$path === false) {
+        if (self::$isInitialized === false) {
+            self::$isInitialized = true;
+
             foreach ($this->candidates as $candidate) {
                 if (self::$path = $this->find($candidate)) {
                     break;
                 }
             }
-
-            if (!self::$path) {
-                throw new \InvalidArgumentException(
-                    'Textpattern installation location was not found.'
-                );
-            }
         }
+    }
+
+    /**
+     * Whether installation was found.
+     *
+     * @return bool
+     */
+    public function isAvailable()
+    {
+        return self::$path !== null;
     }
 
     /**
      * Finds the closest Textpattern installation path.
      *
-     * @param  string      The directory
-     * @return string|bool The path, or FALSE
+     * @param  string $directory
+     *
+     * @return string|null
      */
     public function find($directory)
     {
-        if (($path = $this->isConfig('./textpattern/config.php')) !== false) {
+        $path = $this->isConfig('./textpattern/config.php');
+
+        if ($path !== null) {
             return realpath($path);
         }
 
         if (!file_exists($directory) || !is_dir($directory) || !is_readable($directory)) {
-            return false;
+            return null;
         }
 
         $iterator = new \RecursiveDirectoryIterator(realpath($directory));
         $iterator = new \RecursiveIteratorIterator($iterator);
 
         foreach ($iterator as $file) {
-            if (($path = $this->isConfig($file)) !== false) {
+            $path = $this->isConfig($file);
+
+            if ($path !== null) {
                 return $path;
             }
         }
 
-        return false;
+        return null;
     }
 
     /**
      * Whether the file is a config.php.
      *
-     * @param  string      $file The filename
-     * @return string|bool Path to the directory, or FALSE
+     * @param  string $file The filename
+     * @return string|null
      */
     protected function isConfig($file)
     {
@@ -109,7 +127,7 @@ class Find
             }
         }
 
-        return false;
+        return null;
     }
 
     /**
