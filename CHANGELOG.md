@@ -1,6 +1,13 @@
 Changelog
 =====
 
+1.0.13 - 2022/04/22
+-----
+
+* Fixed: Textpattern >= 4.8 compatibility on PHP >= 8.1. Before would halt
+  to `trying to access array offset on value of type null` error about
+  `$txp_sections` global variable on PHP >= 8.1.
+
 1.0.12 - 2022/04/14
 -----
 

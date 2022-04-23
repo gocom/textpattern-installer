@@ -89,7 +89,7 @@ if (!Inject::$ready && new Textpattern() && Textpattern::$path) {
     $is_article_list, $status, $id, $c, $context, $q, $m, $pg, $p, $month, $author, $request_uri, $qs,
     $subpath, $req, $page, $css, $pfr, $nolog, $has_article_tag, $txp_current_form, $parentid, $thisauthor,
     $thissection, $is_article_body, $stack_article, $thispage, $uPosted, $limit, $permlinks, $thiscategory,
-    $thisarticle, $variable, $thislink, $theme, $event, $step, $trace;
+    $thisarticle, $thisversion, $txp_sections, $variable, $thislink, $theme, $event, $step, $trace;
 
     Inject::$ready = true;
     Inject::$cwd = getcwd();
@@ -118,11 +118,13 @@ if (!Inject::$ready && new Textpattern() && Textpattern::$path) {
         $trace = new \Trace();
     }
 
+    define('txp_version', get_pref('version'));
+    define('LANG', get_pref('language'));
+
     // Disable plugins during the updating and installing.
     // Loading plugins here would cause a FATAL error when invoking
     // plugin's updater callback, as the plugin would be evaluated
     // twice.
-
     Inject::$plugins = get_pref('use_plugins', 1, true);
     Inject::$admin_side_plugins = get_pref('admin_side_plugins', 1, true);
     set_pref('use_plugins', 0);
