@@ -1,6 +1,12 @@
 Changelog
 =====
 
+1.0.14 - 2022/04/24
+-----
+
+* Allow installing Textpattern plugins as dependencies outside a Textpattern
+  installation as a normal library.
+
 1.0.13 - 2022/04/22
 -----
 

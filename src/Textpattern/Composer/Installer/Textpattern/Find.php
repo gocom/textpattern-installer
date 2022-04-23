@@ -90,14 +90,26 @@ class Find
         $path = $this->isConfig('./textpattern/config.php');
 
         if ($path !== null) {
-            return realpath($path);
+            $path = realpath($path);
+
+            if ($path === false) {
+                return null;
+            }
+
+            return $path;
         }
 
         if (!file_exists($directory) || !is_dir($directory) || !is_readable($directory)) {
             return null;
         }
 
-        $iterator = new \RecursiveDirectoryIterator(realpath($directory));
+        $directory = realpath($directory);
+
+        if ($directory === false) {
+            return null;
+        }
+
+        $iterator = new \RecursiveDirectoryIterator($directory);
         $iterator = new \RecursiveIteratorIterator($iterator);
 
         foreach ($iterator as $file) {
